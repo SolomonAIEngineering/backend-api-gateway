@@ -1,0 +1,2472 @@
+{
+	"variables": [
+		{
+			"id": "37369f17-b250-4ac7-8719-52e90d5b4532",
+			"key": "HOST",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"id": "9c38914b-0188-4c40-a56c-697605f5d1be",
+			"key": "SCHEMA",
+			"value": "http",
+			"type": "string"
+		}
+	],
+	"info": {
+		"name": "Simfinii Backend API Gateway",
+		"_postman_id": "fae30f2f-aa49-41d9-b896-8de5e069c4be",
+		"description": "collection parsed at 2023-08-27 19:49:16.581742 -0400 EDT m=+0.004480085",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/v1/gateway/user/registration",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/registration",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/registration"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/logout/:id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/logout/:id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/logout/:id"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/login/:email/:password",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/login/:email/:password",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/login/:email/:password"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/auth/explicit-authentication/:email/:password",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/auth/explicit-authentication/:email/:password",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/auth/explicit-authentication/:email/:password"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/auth/request-password-change",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/auth/request-password-change",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/auth/request-password-change"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/auth/reset-password",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/auth/reset-password",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/auth/reset-password"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/webhook/password-reset",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/webhook/password-reset",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/webhook/password-reset"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/:id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/:id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/:id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/:id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/:id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/:id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/user",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/account",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/account",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/account"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/profile/:userID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/profile/:userID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/profile/:userID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/verification/:userID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/verification/:userID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/verification/:userID"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/email/:email",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/email/:email",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/email/:email"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/email/:email/exists",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/email/:email/exists",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/email/:email/exists"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/username/:username",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/username/:username",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/username/:username"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/username/:username/exists",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/username/:username/exists",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/username/:username/exists"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/accept-follow-request/:followRecordId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/accept-follow-request/:followRecordId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/accept-follow-request/:followRecordId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/block-user/:sourceUserId/target-user-id/:targetUserId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/block-user/:sourceUserId/target-user-id/:targetUserId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/block-user/:sourceUserId/target-user-id/:targetUserId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/unblock-user/:sourceUserId/target-user-id/:targetUserId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/unblock-user/:sourceUserId/target-user-id/:targetUserId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/unblock-user/:sourceUserId/target-user-id/:targetUserId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/follow-user/:sourceUserId/target-user-id/:targetUserId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/follow-user/:sourceUserId/target-user-id/:targetUserId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/follow-user/:sourceUserId/target-user-id/:targetUserId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/users/page-size/:pageSize/page-number/:pageNumber",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/users/page-size/:pageSize/page-number/:pageNumber",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/users/page-size/:pageSize/page-number/:pageNumber"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/communities/page-size/:pageSize/page-number/:pageNumber",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/communities/page-size/:pageSize/page-number/:pageNumber",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/communities/page-size/:pageSize/page-number/:pageNumber"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/:communityId/requestor/:requestorProfileId/type/:requestorProfileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/:communityId/requestor/:requestorProfileId/type/:requestorProfileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/:communityId/requestor/:requestorProfileId/type/:requestorProfileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/follow/:sourceUserId/target-profile-id/:targetCommunityProfileId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/follow/:sourceUserId/target-profile-id/:targetCommunityProfileId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/follow/:sourceUserId/target-profile-id/:targetCommunityProfileId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/user/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/user/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/user/:userId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/community/:communityProfileId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/community/:communityProfileId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/community/:communityProfileId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/community/:communityProfileId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/community/:communityProfileId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/community/:communityProfileId"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/communities-followed/limit/:limit",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/communities-followed/limit/:limit",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/communities-followed/limit/:limit"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/:communityId/posts/blog",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/:communityId/posts/blog",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/:communityId/posts/blog"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/:communityId/topic/:topicName/posts",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/:communityId/topic/:topicName/posts",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/:communityId/topic/:topicName/posts"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/posts/blog/tag/:tagName/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/posts/blog/tag/:tagName/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/posts/blog/tag/:tagName/postType/:postType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/post/:postId/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/post/:postId/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/post/:postId/postType/:postType"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/community/:communityId/accountType/:accountType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/community/:communityId/accountType/:accountType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/community/:communityId/accountType/:accountType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/quality/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/quality/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/quality/postType/:postType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/report",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/report",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/report"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/community/:communityId/timeline/feedType/:feedType/accountType/:accountType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/community/:communityId/timeline/feedType/:feedType/accountType/:accountType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/community/:communityId/timeline/feedType/:feedType/accountType/:accountType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/share",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/share",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/share"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/timeline/feedType/:feedType/accountType/:accountType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/timeline/feedType/:feedType/accountType/:accountType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/timeline/feedType/:feedType/accountType/:accountType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/post/:postId/comment/:commentId/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/post/:postId/comment/:commentId/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/post/:postId/comment/:commentId/postType/:postType"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/postType/:postType/quality",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/postType/:postType/quality",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/postType/:postType/quality"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/report",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/report",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/report"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/community/:communityId/accountType/:accountType/postType/:postType/comment",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/community/:communityId/accountType/:accountType/postType/:postType/comment",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/community/:communityId/accountType/:accountType/postType/:postType/comment"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId/editor/:editorUserId"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId/post/:postId/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId/post/:postId/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId/post/:postId/postType/:postType"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/community/:communityId/topic",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/community/:communityId/topic",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/community/:communityId/topic"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/topics/limit/:limit",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/topics/limit/:limit",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/topics/limit/:limit"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/discover/limit/:limit",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/discover/limit/:limit",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/discover/limit/:limit"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/follow/pending-requests",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/follow/pending-requests",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/follow/pending-requests"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/profile/:profileId/accountType/:accountType/limit/:limit/following",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/profile/:profileId/accountType/:accountType/limit/:limit/following",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/profile/:profileId/accountType/:accountType/limit/:limit/following"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/profile/:profileId/limit/:limit/followers",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/profile/:profileId/limit/:limit/followers",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/profile/:profileId/limit/:limit/followers"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/poll",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/poll",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/poll"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/poll/:pollId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/poll/:pollId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/poll/:pollId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/poll/:pollId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/poll/:pollId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/poll/:pollId"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/poll/:pollId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/poll/:pollId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/poll/:pollId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/polls",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/polls",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/polls"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/parent-post/:parentPostId/postType/:postType/thread/target/:participantPostId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/parent-post/:parentPostId/postType/:postType/thread/target/:participantPostId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/parent-post/:parentPostId/postType/:postType/thread/target/:participantPostId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/thread"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/accountType/:accountType/reaction/:reaction/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/accountType/:accountType/reaction/:reaction/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/accountType/:accountType/reaction/:reaction/postType/:postType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/accountType/:accountType/reaction/:reaction/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/accountType/:accountType/reaction/:reaction/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/accountType/:accountType/reaction/:reaction/postType/:postType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/accountType/:accountType/reaction/:reaction/postType/:postType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/accountType/:accountType/reaction/:reaction/postType/:postType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/accountType/:accountType/reaction/:reaction/postType/:postType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/bookmark",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/bookmark",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/bookmark"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/bookmark",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/bookmark",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/bookmark"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/publication/:publicationId/bookmark"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/note"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/postType/:postType/note/:noteId"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/replies",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/replies",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/replies"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/report",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/report",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/post/:postId/comment/:commentId/reply/:replyId/report"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/:userId/bookmarks",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/:userId/bookmarks",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/:userId/bookmarks"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/social/user/longform-content/type/:post_type/page-size/:page_size/page-number/:page_number",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/social/user/longform-content/type/:post_type/page-size/:page_size/page-number/:page_number",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/social/user/longform-content/type/:post_type/page-size/:page_size/page-number/:page_number"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/initiate-token-exchange",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/initiate-token-exchange",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/initiate-token-exchange"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/initiate-token-update",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/initiate-token-update",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/initiate-token-update"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/exchange-token",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/exchange-token",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/exchange-token"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/:userID/:virtualAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/:userID/:virtualAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/:userID/:virtualAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/investment/:investmentAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/investment/:investmentAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/investment/:investmentAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/liability/:liabilityAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/liability/:liabilityAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/liability/:liabilityAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/mortgage/:mortgageAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/mortgage/:mortgageAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/mortgage/:mortgageAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/student-loan/:studentLoanAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/student-loan/:studentLoanAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/student-loan/:studentLoanAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/bank-account/:bankAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/bank-account/:bankAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/bank-account/:bankAccountID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/bank-account/:bankAccountID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/bank-account/:bankAccountID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/bank-account/:bankAccountID"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/bank-account",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/bank-account",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/bank-account"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/bank-account",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/bank-account",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/bank-account"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/budget/:budgetID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/budget/:budgetID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/budget/:budgetID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/budget/:budgetID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/budget/:budgetID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/budget/:budgetID"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/pocket/:pocketID/smart-goal/:smartGoalID/milestone/:milestoneID/budget",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/pocket/:pocketID/smart-goal/:smartGoalID/milestone/:milestoneID/budget",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/pocket/:pocketID/smart-goal/:smartGoalID/milestone/:milestoneID/budget"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/budget",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/budget",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/budget"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/budget",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/budget",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/budget"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/link",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/link",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/link"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/milestone/:milestoneID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/milestone/:milestoneID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/milestone/:milestoneID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/milestone/:milestoneID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/milestone/:milestoneID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/milestone/:milestoneID"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/milestone",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/milestone",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/milestone"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/milestone",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/milestone",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/milestone"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/milestone/smart-goal/:smartGoalID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/milestone/smart-goal/:smartGoalID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/milestone/smart-goal/:smartGoalID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/profile/:userID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/profile/:userID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/profile/:userID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/profile/:userID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/profile/:userID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/profile/:userID"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/profile",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/profile",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/profile"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/profile",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/profile",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/profile"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/smart-goal",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/smart-goal",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/smart-goal"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/smart-goal",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/smart-goal",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/smart-goal"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/smart-goals/pocket/:pocketID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/smart-goals/pocket/:pocketID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/smart-goals/pocket/:pocketID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/smart-goal/:smartGoalId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/smart-goal/:smartGoalId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/smart-goal/:smartGoalId"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/forecast/:smartGoalId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/forecast/:smartGoalId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/forecast/:smartGoalId"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/pocket/:pocketID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/pocket/:pocketID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/pocket/:pocketID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/link/:linkID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/link/:linkID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/link/:linkID"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/links",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/links",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/links"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/user/:userID/link/:linkID",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/user/:userID/link/:linkID",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/user/:userID/link/:linkID"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/recurring-transactions/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/recurring-transactions/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/recurring-transactions/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/transactions/:user_id/pageNumber/:page_number/pageSize/:page_size",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/transactions/:user_id/pageNumber/:page_number/pageSize/:page_size",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/transactions/:user_id/pageNumber/:page_number/pageSize/:page_size"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/plaid/webhook",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/plaid/webhook",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/plaid/webhook"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/stripe/webhooks",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/stripe/webhooks",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/stripe/webhooks"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/subscription",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/subscription",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/subscription"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/transaction-aggregates/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/transaction-aggregates/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/transaction-aggregates/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/balance-history/user/:user_id/pagenumber/:page_number/pagesize/:page_size",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/balance-history/user/:user_id/pagenumber/:page_number/pagesize/:page_size",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/balance-history/user/:user_id/pagenumber/:page_number/pagesize/:page_size"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/balance-history/account/:plaid_account_id/pagenumber/:page_number/pagesize/:page_size",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/balance-history/account/:plaid_account_id/pagenumber/:page_number/pagesize/:page_size",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/balance-history/account/:plaid_account_id/pagenumber/:page_number/pagesize/:page_size"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/category-monthly-expenditure/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/category-monthly-expenditure/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/category-monthly-expenditure/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/category-monthly-income/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/category-monthly-income/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/category-monthly-income/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/category-monthly-transaction-count/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/category-monthly-transaction-count/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/category-monthly-transaction-count/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/debt-to-income-ratio/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/debt-to-income-ratio/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/debt-to-income-ratio/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/expenses/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/expenses/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/expenses/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/finance-profile/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/finance-profile/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/finance-profile/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/income-expense-ratio/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/income-expense-ratio/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/income-expense-ratio/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/income/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/income/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/income/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/merchant-monthly-expenditure/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/merchant-monthly-expenditure/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/merchant-monthly-expenditure/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-balance/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-balance/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-balance/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-expenditure/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-expenditure/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-expenditure/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-income/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-income/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-income/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-savings/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-savings/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-savings/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-total-quantity-by-security-and-user/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-total-quantity-by-security-and-user/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-total-quantity-by-security-and-user/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/monthly-transaction-count/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/monthly-transaction-count/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/monthly-transaction-count/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/payment-channel-expenditure/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/payment-channel-expenditure/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/payment-channel-expenditure/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/total-investment/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/total-investment/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/total-investment/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/melody-financial-context/user/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/melody-financial-context/user/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/melody-financial-context/user/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/transactions/user/:user_id/plaidAccountId/:plaid_account_id/pageNumber/:page_number/pageSize/:page_size",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/transactions/user/:user_id/plaidAccountId/:plaid_account_id/pageNumber/:page_number/pageSize/:page_size",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/transactions/user/:user_id/plaidAccountId/:plaid_account_id/pageNumber/:page_number/pageSize/:page_size"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/analytics/historical-account-balance/user/:user_id/plaidAccountId/:plaid_account_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/analytics/historical-account-balance/user/:user_id/plaidAccountId/:plaid_account_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/analytics/historical-account-balance/user/:user_id/plaidAccountId/:plaid_account_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/articles",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/articles",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/articles"
+					]
+				},
+				"method": "GET"
+			}
+		}
+	]
+}

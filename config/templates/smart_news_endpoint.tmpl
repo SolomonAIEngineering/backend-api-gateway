@@ -1,0 +1,31 @@
+{{define "news"}}
+
+{{$host := .}}
+{
+    "endpoint":"/v1/gateway/articles",
+    "input_query_strings": [
+        "pageSize",
+        "pageNumber"
+    ],
+    "method":"GET",
+    "timeout": "10s",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v1/articles",
+        "host":[
+            "http://content-ingestion-service.prod.svc.cluster.local:9894"
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+}
+{{end}}

@@ -1,0 +1,10 @@
+{{define "Endpoint"}}
+
+{{$service := .}}
+
+{{ template "authorization" $service.endpoint }},
+{{ template "user" $service.endpoint }},
+{{ template "social" $service.endpoint }},
+{{ template "financials" $service.endpoint }},
+{{ template "news" $service.endpoint }}
+{{end}}
