@@ -2,10 +2,10 @@ OUTPUT_FILE_NAME=config/krakend-flexible-config.compiled.json
 
 validate:
 	krakend check --config krakend.json -ddd -t
-	cat krakend.json | jq >> output.json 
-	mv output.json krakend.json 
+	cat krakend.json | jq >> output.json
+	mv output.json krakend.json
 
-lint: 
+lint:
 	helm lint ./charts/api-gateway
 
 start-local:
@@ -20,7 +20,7 @@ compose-up-d:
 compose-down:
 	docker-compose down
 
-update-chart: 
+update-chart:
 	cp krakend.json ./charts/api-gateway
 
 start-minikube:
@@ -44,17 +44,17 @@ lint-gateway-configs:
 gen:
 	FC_ENABLE=1 FC_SETTINGS="config/settings" FC_PARTIALS="config/partials" FC_TEMPLATES="config/templates" FC_OUT=$(OUTPUT_FILE_NAME) krakend check -t -ddd -c "config/krakend.tmpl"
 
-lint-output: 
+lint-output:
 	krakend check -tlc $(OUTPUT_FILE_NAME)
 
 prettiefy:
-	cat $(OUTPUT_FILE_NAME) | jq >> krakend.compiled.json 
+	cat $(OUTPUT_FILE_NAME) | jq >> krakend.compiled.json
 	mv krakend.compiled.json krakend.json
 	rm $(OUTPUT_FILE_NAME)
 
 swagger:
 	rm api.swagger.json
-	cd ./postman-generator && go build ./cmd/krakend-postman/main.go &&  ./main -c ../krakend.json >> ../api.swagger.json  
+	cd ./postman-generator && go build ./cmd/krakend-postman/main.go &&  ./main -c ../krakend.json >> ../api.swagger.json
 
 build-docs:
 	cd docs && yarn generate

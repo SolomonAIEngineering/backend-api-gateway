@@ -13,7 +13,7 @@ repos:
       -   id: no-commit-to-branch
           args:
             - -b
-            - main
+            - release
       -   id: trailing-whitespace
   - repo: https://github.com/talos-systems/conform
     rev: v0.1.0-alpha.27
@@ -109,7 +109,7 @@ repos:
   - repo: local
     hooks:
       - id: custom-script-sh
-        name: custom-script-sh
-        entry: ./scripts/validation.sh
+        name: validate-gateway-files
+        entry: ./scripts/pre-commit-validation.sh
         language: script
         pass_filenames: false

@@ -1,6 +1,6 @@
 name: docs
 
-# define the trigger 
+# define the trigger
 on: [push, pull_request]
 
 jobs:

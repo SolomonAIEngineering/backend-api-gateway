@@ -1,4 +1,4 @@
-## Installation Instructions 
+## Installation Instructions
 ### Install Jq (MAC OS X)
 ```bash
 brew install jq
@@ -10,7 +10,7 @@ brew install jq
 sudo apt-get install jq
 ```
 
-#### FEDORA 
+#### FEDORA
 ```bash
 sudo dnf install jq
 ```
@@ -30,14 +30,14 @@ The installation process requires following these steps:
 1. Install the repo package
 2. Install the KrakenD package
 3. Start the KrakenD service
-   
+
 ```bash
 rpm -Uvh https://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 yum install -y krakend
 systemctl start krakend
 ```
 
-#### Fedora 
+#### Fedora
 ```bash
 rpm -Uvh https://repo.krakend.io/rpm/krakend-repo-0.2-0.x86_64.rpm
 dnf install -y krakend
