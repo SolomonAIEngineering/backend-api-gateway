@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: headless-authentication-service
+  name: api-gateway
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: headless-authentication-service
+    name: api-gateway
 spec:
   project: default
   source:
-    repoURL: https://github.com/SolomonAIEngineering/backend-headless-authentication-service.git
+    repoURL: https://github.com/SolomonAIEngineering/api-gateway.git
     targetRevision: staging
-    path: charts/headless-authentication-service
+    path: charts/api-gateway
     helm:
       passCredentials: false
       valueFiles:
@@ -25,7 +25,7 @@ spec:
     namespace: platform
   info:
     - name: 'repo:'
-      value: 'https://github.com/SolomonAIEngineering/backend-headless-authentication-service.git '
+      value: 'https://github.com/SolomonAIEngineering/api-gateway.git '
   syncPolicy:
     automated:
       prune: true
