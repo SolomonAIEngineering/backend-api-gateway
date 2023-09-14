@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: api-gateway
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    name: api-gateway
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/SolomonAIEngineering/backend-api-gateway.git
+    targetRevision: HEAD
+    path: charts/api-gateway
+    helm:
+      passCredentials: false
+      valueFiles:
+      - values.production.yaml
+      ignoreMissingValueFiles: false
+      skipCrds: false
+      version: v2
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: platform
+  info:
+    - name: 'repo:'
+      value: 'https://github.com/SolomonAIEngineering/backend-api-gateway.git '
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - Validate=false
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 10
