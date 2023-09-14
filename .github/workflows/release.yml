@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - "main"
-      - "release"
+      - "staging"
   pull_request:
     branches:
       - "main"
-      - "release"
+      - "staging"
 
 
 permissions:
@@ -90,24 +90,24 @@ jobs:
         run: |
           HELM_EXPERIMENTAL_OCI=1
           helm package charts/api-gateway --version ${{ steps.prep.outputs.HELM_VERSION }}
-          helm push api-gateway-${{ steps.prep.outputs.HELM_VERSION }}.tgz oci://ghcr.io/simifiniicto/charts
+          helm push api-gateway-${{ steps.prep.outputs.HELM_VERSION }}.tgz oci://ghcr.io/solomonaiengineering/charts
           rm api-gateway-${{ steps.prep.outputs.HELM_VERSION }}.tgz
         continue-on-error: true
       - name: Publish Flux OCI artifact to GHCR
         run: |
-          flux push artifact oci://ghcr.io/simifiniicto/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} \
+          flux push artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} \
             --path="./kustomize" \
             --source="${{ github.event.repository.html_url }}" \
             --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/simifiniicto/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
+          flux tag artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
         continue-on-error: true
       - name: Publish config artifact
         run: |
-          flux push artifact oci://ghcr.io/simifiniicto/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} \
+          flux push artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} \
             --path="./kustomize" \
             --source="${{ github.event.repository.html_url }}" \
             --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/simifiniicto/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
+          flux tag artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
         continue-on-error: true
       - name: Publish Service Helm Chart
         uses: stefanprodan/helm-gh-pages@master
@@ -156,8 +156,50 @@ jobs:
         run: |
           kubectl logs -l app=api-gateway || true
 
-  deploy:
+  apply-argo-manifests:
     needs: [publish-artifacts]
+    runs-on: ubuntu-latest
+    env:
+      working-directory: .
+      production-cluster: ${{ secrets.PRODUCTION_CLUSTER_NAME }}
+      staging-cluster: ${{ secrets.STAGING_CLUSTER_NAME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.17.x
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
+      - name: Setup Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: "--debug"
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
+      - name: Apply ArgoCD Manifests (Staging)
+        working-directory: ${{env.working-directory}}
+        if: github.ref == 'refs/heads/staging'
+        run: |
+          doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.staging-cluster}}
+          kubectl apply -f ./kustomize/argocd/staging/argocd.staging.yaml
+      - name: Apply ArgoCD Manifests (Production)
+        working-directory: ${{env.working-directory}}
+        if: github.ref == 'refs/heads/main'
+        run: |   
+          doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.production-cluster}}
+          kubectl apply -f ./kustomize/argocd/prod/argocd.production.yaml
+
+  deploy:
+    needs: [publish-artifacts, apply-argo-manifests]
     runs-on: ubuntu-latest
     env:
       working-directory: .
@@ -188,7 +230,7 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
       - name: Deploy To Staging Environment
-        if: github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/staging'
         working-directory: ${{env.working-directory}}
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.staging-cluster}}
@@ -229,7 +271,7 @@ jobs:
       - name: Generate release notes
         run: |
           echo 'CHANGELOG' > /tmp/release.txt
-          github-release-notes -org SimifiniiCTO -repo simfiny-api-gateway -since-latest-release >> /tmp/release.txt
+          github-release-notes -org SolomonAIEngineering -repo backend-api-gateway -since-latest-release >> /tmp/release.txt
       - name: Publish release
         uses: goreleaser/goreleaser-action@v3
         with:
