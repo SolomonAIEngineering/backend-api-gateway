@@ -234,13 +234,13 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.staging-cluster}}
-          ./deploy/deploy.sh -n staging
+          ./deploy/deploy.sh -n platform
       - name: Deploy To Production Environment
         if: github.ref == 'refs/heads/main'
         working-directory: ${{env.working-directory}}
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.production-cluster}}
-          ./deploy/deploy.sh -n prod
+          ./deploy/deploy.sh -n platform
 
   release-notes:
     if: github.ref == 'refs/heads/main'
