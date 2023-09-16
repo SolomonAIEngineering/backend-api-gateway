@@ -1,0 +1,71 @@
+---
+# Source: api-gateway/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    helm.sh/chart: api-gateway-0.1.0
+    app.kubernetes.io/name: api-gateway
+    app.kubernetes.io/instance: api-gateway
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: api-gateway
+      app.kubernetes.io/instance: api-gateway
+  template:
+    metadata:
+      annotations:
+        timestamp: "20230916011137"
+        prometheus.io/path: "__stats"
+        prometheus.io/port: "8081"
+        prometheus.io/scrape: "true"
+        config.linkerd.io/access-log: "json"
+        config.linkerd.io/proxy-log-format: "json"
+        config.linkerd.io/proxy-log-level: "warn"
+        linkerd.io/inject: "enabled"
+      labels:
+        app.kubernetes.io/name: api-gateway
+        app.kubernetes.io/instance: api-gateway
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: api-gateway-configmap
+      serviceAccountName: api-gateway
+      securityContext:
+        {}
+      containers:
+        - name: api-gateway
+          securityContext:
+            {}
+          image: "feelguuds/api-gateway:latest"
+          imagePullPolicy: Always
+          command: [ "/usr/bin/krakend" ]
+          args: [ "run", "-d", "-c", "/etc/krakend/krakend.json", "-p", "8080" ]
+          env:
+          - name: KRAKEND_PORT
+            value: "8080"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: metrics
+              containerPort: 8081
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+

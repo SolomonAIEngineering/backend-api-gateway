@@ -1,0 +1,10 @@
+---
+# Source: api-gateway/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-gateway-configmap
+data:
+  krakend.json: |-
+    krakend.json
+
