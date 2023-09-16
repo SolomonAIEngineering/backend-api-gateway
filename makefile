@@ -41,8 +41,12 @@ deploy:
 lint-gateway-configs:
 	krakend check -tlc krakend.json
 
-gen:
+update-kustomize:
+	./scripts/sync-kustomize.sh
+
+gen: 
 	FC_ENABLE=1 FC_SETTINGS="config/settings" FC_PARTIALS="config/partials" FC_TEMPLATES="config/templates" FC_OUT=$(OUTPUT_FILE_NAME) krakend check -t -ddd -c "config/krakend.tmpl"
+	make update-kustomize
 
 lint-output:
 	krakend check -tlc $(OUTPUT_FILE_NAME)
@@ -59,4 +63,5 @@ swagger:
 build-docs:
 	cd docs && yarn generate
 
-autogen: gen lint-output prettiefy swagger build-docs
+autogen: gen lint-output prettiefy swagger build-docs 
+	
