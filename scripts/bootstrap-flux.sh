@@ -46,8 +46,6 @@ bootstrap_flux() {
     --branch=main \
     --path=./clusters/$environment \
     --personal
-
- refine_repo_and_kustomize "${kubernetes_ctx}" "${environment}"
 }
 
 
