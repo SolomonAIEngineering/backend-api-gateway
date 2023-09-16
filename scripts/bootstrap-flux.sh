@@ -14,14 +14,12 @@ refine_repo_and_kustomize() {
    local environment=$2
 
     flux create source git api-gateway \  
-        --context=$kubernetes_ctx \                    
-        --url=https://git@github.com/SolomonAIEngineering/backend-api-gateway \
+        --url="https://git@github.com/SolomonAIEngineering/backend-api-gateway" \
         --branch=main \
         --interval=1m \
         --export > ./clusters/$environment/service-source.yaml
     
     flux create kustomization api-gateway \
-        --context="$kubernetes_ctx" \                    
         --target-namespace=platform \
         --source=api-gateway \
         --path="./kustomize/overlays/$environment" \
@@ -52,3 +50,6 @@ bootstrap_flux() {
 # Use the function to install flux onto the staging cluster.
 bootstrap_flux "do-nyc3-solomon-ai-k8s-staging" "staging"
 bootstrap_flux "do-nyc3-solomon-ai-k8s-prod" "production"
+
+refine_repo_and_kustomize "do-nyc3-solomon-ai-k8s-staging" "staging"
+refine_repo_and_kustomize "do-nyc3-solomon-ai-k8s-prod" "production"
