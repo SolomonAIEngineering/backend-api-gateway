@@ -21,7 +21,7 @@ refine_repo_and_kustomize() {
         --export > ./clusters/$environment/service-source.yaml
     
     flux create kustomization api-gateway \
-        --context=$kubernetes_ctx \                    
+        --context="$kubernetes_ctx" \                    
         --target-namespace=platform \
         --source=api-gateway \
         --path="./kustomize/overlays/$environment" \
@@ -39,6 +39,7 @@ bootstrap_flux() {
   local environment=$2
 
   flux bootstrap github \
+    --token-auth \
     --context=$kubernetes_ctx \
     --owner=$GITHUB_USER \
     --repository=$GITHUB_REPO \
@@ -46,7 +47,7 @@ bootstrap_flux() {
     --path=./clusters/$environment \
     --personal
 
-    refine_repo_and_kustomize "${kubernetes_ctx}" "${environment}"
+ refine_repo_and_kustomize "${kubernetes_ctx}" "${environment}"
 }
 
 
