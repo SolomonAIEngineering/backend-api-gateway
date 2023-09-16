@@ -53,3 +53,7 @@ bootstrap_flux "do-nyc3-solomon-ai-k8s-prod" "production"
 
 refine_repo_and_kustomize "do-nyc3-solomon-ai-k8s-staging" "staging"
 refine_repo_and_kustomize "do-nyc3-solomon-ai-k8s-prod" "production"
+
+# creates a secret used to authenticate into repo
+# flux create secret git api-gateway-secret \
+#     --url=https://github.com/SolomonAIEngineering/backend-api-gateway.git  --password=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 --username=yoanyombapro1234
