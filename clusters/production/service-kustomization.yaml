@@ -12,6 +12,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: api-gateway
-  targetNamespace: platform
   timeout: 3m0s
   wait: true

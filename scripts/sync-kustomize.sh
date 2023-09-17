@@ -71,7 +71,7 @@ generate_helm_template() {
     local service_name="$1"
     local charts="$2"
     local valuesfileName="$3"
-    helm template "$service_name" "$charts" -f $charts/$valuesfileName > output.yaml
+    helm template "$service_name" "$charts" -f $charts/$valuesfileName --set linkerd.profile.enabled=false -n $namespace > output.yaml
 }
 
 parse_helm_output() {

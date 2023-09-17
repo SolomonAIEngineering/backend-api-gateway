@@ -8,4 +8,6 @@ spec:
   interval: 1m0s
   ref:
     branch: main
+  secretRef:
+    name: backend-api-gateway-secret
   url: https://git@github.com/SolomonAIEngineering/backend-api-gateway

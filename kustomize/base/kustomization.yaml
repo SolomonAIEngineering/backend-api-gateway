@@ -6,4 +6,3 @@ resources:
 - pod.yaml
 - service.yaml
 - serviceaccount.yaml
-- serviceprofile.yaml

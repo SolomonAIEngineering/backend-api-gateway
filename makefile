@@ -63,5 +63,15 @@ swagger:
 build-docs:
 	cd docs && yarn generate
 
+
+validate-manifests:
+	./scripts/validate-manifests.sh
+
+
+boostrap-flux:
+	./scripts/bootstrap-flux.sh
+
+precommit: build-docs  update-kustomize  boostrap-flux:
+
 autogen: gen lint-output prettiefy swagger build-docs 
 	

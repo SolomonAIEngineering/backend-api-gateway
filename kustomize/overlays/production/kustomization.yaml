@@ -8,4 +8,3 @@ patches:
 - path: patch-pod.yaml
 - path: patch-service.yaml
 - path: patch-serviceaccount.yaml
-- path: patch-serviceprofile.yaml

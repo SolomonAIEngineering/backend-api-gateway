@@ -24,14 +24,10 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20230916011137"
+        timestamp: "20230917040641"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
-        config.linkerd.io/access-log: "json"
-        config.linkerd.io/proxy-log-format: "json"
-        config.linkerd.io/proxy-log-level: "warn"
-        linkerd.io/inject: "enabled"
       labels:
         app.kubernetes.io/name: api-gateway
         app.kubernetes.io/instance: api-gateway

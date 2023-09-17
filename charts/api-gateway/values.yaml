@@ -102,7 +102,7 @@ sidecar:
 
 linkerd:
   profile:
-    enabled: true
+    enabled: false
   annotations:
     linkerd.io/inject: enabled # Controls whether or not a pod should be injected; accepted values are enabled, disabled and ingress
     config.linkerd.io/access-log: json
