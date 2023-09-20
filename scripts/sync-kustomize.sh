@@ -9,7 +9,7 @@ generate_base_kustomizations() {
     local charts="$2"
     
     # Generate the base kustomizations using helm and awk
-    helm template "$service_name" "$charts" > output.yaml
+    helm template "$service_name" "$charts" -n $namespace> output.yaml
 
     awk '
     BEGIN {buf=""}
@@ -52,6 +52,7 @@ generate_kustomization() {
     # Begin writing the Kustomization file
     echo "apiVersion: kustomize.config.k8s.io/v1beta1" > "$kustomization_file"
     echo "kind: Kustomization" >> "$kustomization_file"
+    echo "namespace: $namespace" >> "$kustomization_file"  # Add this line
     echo "resources:" >> "$kustomization_file"
 
     for file in $dir/*.yaml; do
@@ -71,7 +72,7 @@ generate_helm_template() {
     local service_name="$1"
     local charts="$2"
     local valuesfileName="$3"
-    helm template "$service_name" "$charts" -f $charts/$valuesfileName --set linkerd.profile.enabled=false -n $namespace > output.yaml
+    helm template "$service_name" "$charts" -f $charts/$valuesfileName --set linkerd.profile.enabled=false -n platform > output.yaml
 }
 
 parse_helm_output() {
@@ -112,6 +113,7 @@ create_base_kustomization_file() {
     local kustomization_file="$dir/kustomization.yaml"
     echo "apiVersion: kustomize.config.k8s.io/v1beta1" > "$kustomization_file"
     echo "kind: Kustomization" >> "$kustomization_file"
+    echo "namespace: $namespace" >> "$kustomization_file"  # Add this line
     echo "resources:" >> "$kustomization_file"
 }
 
@@ -131,6 +133,7 @@ create_overlay_kustomization_file() {
     
     echo "apiVersion: kustomize.config.k8s.io/v1beta1" > "$kustomization_file"
     echo "kind: Kustomization" >> "$kustomization_file"
+    echo "namespace: platform" >> "$kustomization_file"  # Add this line
     echo "bases:" >> "$kustomization_file"
     echo "- ../../base" >> "$kustomization_file"
     echo "patchesStrategicMerge:" >> "$kustomization_file"
