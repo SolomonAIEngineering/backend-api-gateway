@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "b8e839d4-5c75-423d-8628-6260f470c5da",
+			"id": "a0887f5a-b7c8-43ea-9fc3-6ee8756910a9",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "586ee6e1-80c8-4793-a793-831932a257bd",
+			"id": "0468ad83-cc65-41f2-b312-819b8b7056e7",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Simfinii Backend API Gateway",
-		"_postman_id": "5886a464-9c76-4aa4-a201-ff50e3339bbb",
-		"description": "collection parsed at 2023-09-20 10:43:57.607966 -0400 EDT m=+0.005093417",
+		"_postman_id": "3972539c-302a-4153-a484-a59721c6cf01",
+		"description": "collection parsed at 2023-09-20 11:03:57.332615 -0400 EDT m=+0.004989751",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
