@@ -10,8 +10,8 @@
     "read_header_timeout": "15s",
     "max_idle_connections": 150,
     "default_hosts": [
-        "http://api-gateway-1.prod.svc.cluster.local:8080",
-        "http://api-gateway-2.prod.svc.cluster.local:8080",
-        "http://api-gateway-3.prod.svc.cluster.local:8080"
+        "http://api-gateway-1.platform.svc.cluster.local:8080",
+        "http://api-gateway-2.platform.svc.cluster.local:8080",
+        "http://api-gateway-3.platform.svc.cluster.local:8080"
     ]
-}
+ }

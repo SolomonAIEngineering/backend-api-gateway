@@ -1,53 +1,39 @@
-name: release artifacts
+name: release
 
 on:
   push:
-    branches:
-      - "main"
-      - "staging"
-  pull_request:
-    branches:
-      - "main"
-      - "staging"
-
-
+    tags:
+      - '*'
+      
 permissions:
   contents: write # needed to write releases
   id-token: write # needed for keyless signing
   packages: write # needed for ghcr access
 
+env:
+  KUBERNETES_VERSION: 1.26.0
+
 jobs:
   publish-artifacts:
-    strategy:
-      matrix:
-        helm-version:
-          - 3.8.1
     runs-on: ubuntu-latest
     steps:
-      - name: Get Release Version
-        run: |
-          export RELEASE_VERSION=${GITHUB_REF#refs/*/}
-          echo RELEASE_VERSION: ${RELEASE_VERSION}
-          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> $GITHUB_ENV
-      - name: Get Github Branch Name
-        run: |
-          # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
-          echo GIT_BRANCH: ${GIT_BRANCH}
-          echo "GIT_BRANCH=${GIT_BRANCH}" >> $GITHUB_ENV
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: sigstore/cosign-installer@main
       - uses: fluxcd/flux2/action@main
+      - uses: sigstore/cosign-installer@main
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.18.x
+          go-version: 1.19.x
       - name: Setup Helm
-        uses: ./.github/actions/helm
+        uses: azure/setup-helm@v3
         with:
-          version: 3.8.1
+          version: v3.10.3
+      - name: Setup kubeconform
+        uses: ./.github/actions/kubeconform
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: v${{ env.KUBERNETES_VERSION }}
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
         with:
@@ -69,7 +55,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          HELM_VERSION=$(grep 'version:' ./charts/api-gateway/Chart.yaml | awk '{ print $2 }' | tr -d '"')
+          HELM_VERSION=$(grep 'VERSION' pkg/version/version.go | awk '{ print $4 }' | tr -d '"')
           VERSION=sha-${GITHUB_SHA::8}
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF/refs\/tags\//}
@@ -78,37 +64,6 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "REVISION=${GITHUB_SHA}" >> $GITHUB_OUTPUT
           echo "HELM_VERSION=${HELM_VERSION}" >> $GITHUB_OUTPUT
-      - name: Validate Service Helm Chart
-        uses: stefanprodan/kube-tools@v1
-        with:
-          kubectl: 1.19.11
-          helm: 2.17.0
-          helmv3: 3.6.0
-          command: |
-            helmv3 template ./charts/api-gateway --set linkerd.profile.enabled=false --set hpa.enabled=false | kubeval --strict --kubernetes-version 1.19.11 --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master
-      - name: Publish Helm chart to GHCR
-        run: |
-          HELM_EXPERIMENTAL_OCI=1
-          helm package charts/api-gateway --version ${{ steps.prep.outputs.HELM_VERSION }}
-          helm push api-gateway-${{ steps.prep.outputs.HELM_VERSION }}.tgz oci://ghcr.io/solomonaiengineering/charts
-          rm api-gateway-${{ steps.prep.outputs.HELM_VERSION }}.tgz
-        continue-on-error: true
-      - name: Publish Flux OCI artifact to GHCR
-        run: |
-          flux push artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} \
-            --path="./kustomize" \
-            --source="${{ github.event.repository.html_url }}" \
-            --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
-        continue-on-error: true
-      - name: Publish config artifact
-        run: |
-          flux push artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} \
-            --path="./kustomize" \
-            --source="${{ github.event.repository.html_url }}" \
-            --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.HELM_VERSION }} --tag latest
-        continue-on-error: true
       - name: Publish Service Helm Chart
         uses: stefanprodan/helm-gh-pages@master
         with:
@@ -117,17 +72,6 @@ jobs:
           target_dir: ./api-gateway
           commit_username: yoanyombapro1234
           commit_email: yoanyombapro@gmail.com
-      # get github action tags
-      - name: "Get Previous tag"
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        with:
-          fallback: 1.0.0 # Optional fallback tag to use when no tag can be found
-      - name: "Get next minor version"
-        id: semvers
-        uses: "WyriHaximus/github-action-next-semvers@v1"
-        with:
-          version: ${{ steps.previoustag.outputs.tag }}
       - name: Generate images meta
         id: meta
         uses: docker/metadata-action@v4
@@ -136,75 +80,72 @@ jobs:
             docker.io/feelguuds/api-gateway
           tags: |
             type=raw,value=${{ steps.prep.outputs.VERSION }}
-            type=raw,value=${{ steps.semvers.outputs.minor }}
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
             type=raw,value=staging,enable=${{ github.ref == format('refs/heads/{0}', 'release') }}
-      - name: Publish Multi-Arch Image Social Service
-        uses: docker/build-push-action@v2
+            type=raw,value=staging,enable=${{ github.ref == format('refs/heads/{0}', 'staging') }}
+      - name:  Publish multi-arch image
+        uses: docker/build-push-action@v3
         with:
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
+          sbom: true
+          provenance: true
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64
           build-args: |
             REVISION=${{ steps.prep.outputs.REVISION }}
+          platforms: linux/amd64,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Validate Service Helm Chart
+        run: |
+          helm lint ./charts/api-gateway
+          helm template ./charts/api-gateway --set linkerd.profile.enabled=false --set autoscaling.enabled=false | kubeconform -strict -summary -kubernetes-version ${{ env.KUBERNETES_VERSION }}
+      - name: Publish Helm chart to GHCR
+        run: |
+          HELM_EXPERIMENTAL_OCI=1
+          helm package charts/api-gateway --version ${{ steps.prep.outputs.VERSION }}
+          helm push api-gateway-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/solomonaiengineering/charts
+          rm api-gateway-${{ steps.prep.outputs.VERSION }}.tgz
+      - name: Publish Flux OCI artifact to GHCR
+        run: |
+          flux push artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.VERSION }} \
+            --path="./kustomize" \
+            --source="${{ github.event.repository.html_url }}" \
+            --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
+          flux tag artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.VERSION }} --tag latest
+      - name: Publish base image
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          sbom: true
+          provenance: true
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          platforms: linux/amd64,linux/arm64/v8
+          file: ./Dockerfile.base
+          tags: docker.io/feelguuds/api-gateway-base:latest
+      - name: Publish config artifact
+        run: |
+          flux push artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.VERSION }} \
+            --path="./kustomize" \
+            --source="${{ github.event.repository.html_url }}" \
+            --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
+          flux tag artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.VERSION }} --tag latest
+      - uses: ./.github/actions/release-notes
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
       - name: Debug failure
         if: failure()
         run: |
           kubectl logs -l app=api-gateway || true
-
-  release-notes:
-    if: github.ref == 'refs/heads/main'
-    needs: [publish-artifacts, deploy]
-    runs-on: ubuntu-latest
-    env:
-      working-directory: .
-      cluster: ${{ secrets.CLUSTER_NAME }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17.x
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: all
-      - name: Setup Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          buildkitd-flags: "--debug"
-      - uses: ./.github/actions/release-notes
-      - name: Generate release notes
-        run: |
-          echo 'CHANGELOG' > /tmp/release.txt
-          github-release-notes -org SolomonAIEngineering -repo backend-api-gateway -since-latest-release >> /tmp/release.txt
-      - name: Publish release
-        uses: goreleaser/goreleaser-action@v3
-        with:
-          version: latest
-          args: release --release-notes=/tmp/release.txt --skip-validate --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  bump-tags:
-    if: github.ref == 'refs/heads/main'
-    needs: [publish-artifacts, deploy, release-notes]
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: "0"
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true

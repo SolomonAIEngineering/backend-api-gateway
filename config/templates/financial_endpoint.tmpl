@@ -37,7 +37,7 @@
     "backend":[
     {
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "url_pattern":"/api/v1/plaid/initiate-token-exchange",
         "method":"POST",
@@ -82,7 +82,7 @@
     "backend":[
     {
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "url_pattern":"/api/v1/plaid/initiate-token-update",
         "method":"POST",
@@ -104,7 +104,7 @@
     {
         "url_pattern":"/api/v1/plaid/exchange-token",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -126,7 +126,7 @@
     {
         "url_pattern":"/api/v1/accounts/user/{userID}/account/{virtualAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -149,7 +149,7 @@
     {
         "url_pattern":"/api/v1/account/{userID}/investment/{investmentAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -172,7 +172,7 @@
     {
         "url_pattern":"/api/v1/account/{userID}/liability/{liabilityAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -195,7 +195,7 @@
     {
         "url_pattern":"/api/v1/account/{userID}/mortgage/{mortgageAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -218,7 +218,7 @@
     {
         "url_pattern":"/api/v1/account/{userID}/student-loan/{studentLoanAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -241,7 +241,7 @@
     {
         "url_pattern":"/api/v1/bank-account/{bankAccountID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -264,7 +264,7 @@
     {
         "url_pattern":"/api/v1/bank-account/{bankAccountID}?userId={userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -287,7 +287,7 @@
     {
         "url_pattern":"/api/v1/bank-account",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -310,7 +310,7 @@
     {
         "url_pattern":"/api/v1/bank-account/profile/{userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -333,7 +333,7 @@
     {
         "url_pattern":"/api/v1/budget/{budgetID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -356,7 +356,7 @@
     {
         "url_pattern":"/api/v1/budget/{budgetID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -379,7 +379,7 @@
     {
         "url_pattern":"/api/v1/budget?pocketId={pocketID}&smartGoalId={smartGoalID}&milestoneId={milestoneID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -402,7 +402,7 @@
     {
         "url_pattern":"/api/v1/budget",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -425,7 +425,7 @@
     {
         "url_pattern":"/api/v1/budget",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -448,7 +448,7 @@
     {
         "url_pattern":"/api/v1/link",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -471,7 +471,7 @@
     {
         "url_pattern":"/api/v1/milestone/{milestoneID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -494,7 +494,7 @@
     {
         "url_pattern":"/api/v1/milestone/{milestoneID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -517,7 +517,7 @@
     {
         "url_pattern":"/api/v1/milestone",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -540,7 +540,7 @@
     {
         "url_pattern":"/api/v1/milestone",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -563,7 +563,7 @@
     {
         "url_pattern":"/api/v1/milestone/smart-goal/{smartGoalID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -586,7 +586,7 @@
     {
         "url_pattern":"/api/v1/profile/{userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -609,7 +609,7 @@
     {
         "url_pattern":"/api/v1/profile/{userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -632,7 +632,7 @@
     {
         "url_pattern":"/api/v1/profile",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -655,7 +655,7 @@
     {
         "url_pattern":"/api/v1/profile",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -678,7 +678,7 @@
     {
         "url_pattern":"/api/v1/smart-goal",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -701,7 +701,7 @@
     {
         "url_pattern":"/api/v1/smart-goal",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -724,7 +724,7 @@
     {
         "url_pattern":"/api/v1/smart-goal/pocket/{pocketID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -747,7 +747,7 @@
     {
         "url_pattern":"/api/v1/smart-goal/{smartGoalId}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -770,7 +770,7 @@
     {
         "url_pattern":"/api/v1/forecast/{smartGoalId}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -793,7 +793,7 @@
     {
         "url_pattern":"/api/v1/pocket/{pocketID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -816,7 +816,7 @@
     {
         "url_pattern":"/api/v1/link/{linkID}?userId={userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -839,7 +839,7 @@
     {
         "url_pattern":"/api/v1/links/{userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -862,7 +862,7 @@
     {
         "url_pattern":"/api/v1/link/{linkID}/user/{userID}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -885,7 +885,7 @@
     {
         "url_pattern":"/api/v1/transactions/recurring-transactions/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -908,7 +908,7 @@
     {
         "url_pattern":"/api/v1/transactions/{user_id}/pageNumber/{page_number}/pageSize/{page_size}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -929,7 +929,7 @@
     {
         "url_pattern":"/plaid/webhook",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9898"
+            "http://financial-integration-service.platform.svc.cluster.local:9898"
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -950,7 +950,7 @@
         "url_pattern":"/stripe/webhook",
         "encoding": "no-op",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9898"
+            "http://financial-integration-service.platform.svc.cluster.local:9898"
         ],
         "method":"POST",
         "extra_config":{
@@ -971,7 +971,7 @@
     {
         "url_pattern":"/api/v1/stripe/subscription",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1003,7 +1003,7 @@
     {
         "url_pattern":"/api/v1/analytics/transaction-aggregates/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1026,7 +1026,7 @@
     {
         "url_pattern":"/api/v1/analytics/balance-history/user/{user_id}/pagenumber/{page_number}/pagesize/{page_size}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1049,7 +1049,7 @@
     {
         "url_pattern":"/api/v1/analytics/balance-history/account/{plaid_account_id}/pagenumber/{page_number}/pagesize/{page_size}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1078,7 +1078,7 @@
     {
         "url_pattern":"/api/v1/analytics/category-monthly-expenditure/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1107,7 +1107,7 @@
     {
         "url_pattern":"/api/v1/analytics/category-monthly-income/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1136,7 +1136,7 @@
     {
         "url_pattern":"/api/v1/analytics/category-monthly-transaction-count/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1164,7 +1164,7 @@
     {
         "url_pattern":"/api/v1/analytics/debt-to-income-ratio/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1193,7 +1193,7 @@
     {
         "url_pattern":"/api/v1/analytics/expenses/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1221,7 +1221,7 @@
     {
         "url_pattern":"/api/v1/analytics/finance-profile/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1249,7 +1249,7 @@
     {
         "url_pattern":"/api/v1/analytics/income-expense-ratio/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1278,7 +1278,7 @@
     {
         "url_pattern":"/api/v1/analytics/income/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1307,7 +1307,7 @@
     {
         "url_pattern":"/api/v1/analytics/merchant-monthly-expenditure/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1335,7 +1335,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-balance/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1363,7 +1363,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-expenditure/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1391,7 +1391,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-income/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1419,7 +1419,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-savings/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1448,7 +1448,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1476,7 +1476,7 @@
     {
         "url_pattern":"/api/v1/analytics/monthly-transaction-count/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1505,7 +1505,7 @@
     {
         "url_pattern":"/api/v1/analytics/payment-channel-expenditure/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1533,7 +1533,7 @@
     {
         "url_pattern":"/api/v1/analytics/total-investment/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1556,7 +1556,7 @@
     {
         "url_pattern":"/api/v1/analytics/melody-financial-context/user/{user_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1579,7 +1579,7 @@
     {
         "url_pattern":"/api/v1/analytics/transactions/user/{user_id}/plaid-account-id/{plaid_account_id}/pageNumber/{page_number}/pageSize/{page_size}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1602,7 +1602,7 @@
     {
         "url_pattern":"/api/v1/historical-account-balance/user/{user_id}/plaid-account-id/{plaid_account_id}",
         "host":[
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            {{ include "financial_integration_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{

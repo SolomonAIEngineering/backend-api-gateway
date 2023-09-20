@@ -13,7 +13,7 @@
     {
         "url_pattern":"/api/v1/user/{id}",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -36,7 +36,7 @@
     {
         "url_pattern":"/api/v1/user/{id}",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -59,7 +59,7 @@
     {
         "url_pattern":"/api/v1/user",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -85,7 +85,7 @@
     {
         "url_pattern":"/api/v1/user",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -111,7 +111,7 @@
     {
         "url_pattern":"/api/v1/user/account",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -136,7 +136,7 @@
             "@comment": "we query for the userID based on the provided user userID",
             "url_pattern":"/api/v1/user/{userID}",
             "host":[
-                "http://user-service.prod.svc.cluster.local:9896"
+                {{ include "user_service_host.tmpl" }}
             ],
             "method":"GET",
             "extra_config":{
@@ -149,7 +149,7 @@
             "@comment": "we call the social service to obtain the social profile of the user",
             "url_pattern":"/v1/social/user?userID={resp0_account.id}",
             "host":[
-                "http://social-service.prod.svc.cluster.local:9896"
+                {{ include "social_service_host.tmpl" }}
             ],
             "method":"GET",
             "extra_config":{
@@ -179,7 +179,7 @@
     {
         "url_pattern":"/api/v1/user/verification/{userID}",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -201,7 +201,7 @@
     {
         "url_pattern":"/api/v1/user/email/{email}",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -224,7 +224,7 @@
     {
         "url_pattern":"/api/v1/user/email/{email}/exists",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -246,7 +246,7 @@
     {
         "url_pattern":"/api/v1/user/username/{username}",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -269,7 +269,7 @@
     {
         "url_pattern":"/api/v1/user/username/{username}/exists",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{

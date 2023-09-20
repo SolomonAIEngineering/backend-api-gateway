@@ -12,7 +12,7 @@
     {
         "url_pattern":"/api/v1/user",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -36,7 +36,7 @@
         {
             "url_pattern":"/api/v1/user/logout/{id}",
             "host":[
-                "http://headless-authentication-service.prod.svc.cluster.local:9796"
+                {{ include "headless_authentication_service_host.tmpl" }}
             ],
             "method":"POST",
             "extra_config":{
@@ -60,7 +60,7 @@
             "@comment": "we query for the userID based on the provided user email",
             "url_pattern":"/api/v1/user/account?email={email}",
             "host":[
-                "http://user-service.prod.svc.cluster.local:9896"
+                {{ include "user_service_host.tmpl" }}
             ],
             "group": "user_account",
             "target": "account",
@@ -79,7 +79,7 @@
             "@comment": "we call the social service to obtain the social profile of the user",
             "url_pattern":"/v1/social/user/{resp0_user_account.userAccountID}",
             "host":[
-                "http://social-service.prod.svc.cluster.local:9896"
+                {{ include "social_service_host.tmpl" }}
             ],
             "method":"GET",
             "group": "user_profile",
@@ -102,7 +102,7 @@
             "@comment": "we call the financial service to obtain the financial profile of the user",
             "url_pattern":"/api/v1/profile/{resp0_user_account.userAccountID}",
             "host":[
-                "http://financial-integration-service.prod.svc.cluster.local:9896"
+                {{ include "financial_integration_service_host.tmpl" }}
             ],
             "method":"GET",
             "group": "user_financial_profile",
@@ -119,7 +119,7 @@
             "@comment": "we call the authentication service with the user credentials in hopes of obtaining a jwt token",
             "url_pattern":"/api/v1/user/login?email={email}&password={password}",
             "host":[
-                "http://headless-authentication-service.prod.svc.cluster.local:9796"
+                {{ include "headless_authentication_service_host.tmpl" }}
             ],
             "method":"POST",
             "extra_config":{
@@ -142,7 +142,7 @@
     {
         "url_pattern":"/api/v1/user/login?email={email}&password={password}",
         "host":[
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            {{ include "headless_authentication_service_host.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -166,7 +166,7 @@
     {
         "url_pattern":"/api/v1/user/request-password-change",
         "host":[
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            {{ include "headless_authentication_service_host.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -190,7 +190,7 @@
     {
         "url_pattern":"/api/v1/user/reset-password",
         "host":[
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            {{ include "headless_authentication_service_host.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -214,7 +214,7 @@
     {
         "url_pattern":"/api/v1/user/webhook/password-reset",
         "host":[
-            "http://user-service.prod.svc.cluster.local:9896"
+            {{ include "user_service_host.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
