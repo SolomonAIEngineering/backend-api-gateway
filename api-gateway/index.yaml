@@ -2,10 +2,10 @@ apiVersion: v1
 entries:
   api-gateway:
   - apiVersion: v2
-    appVersion: 2.0.1
-    created: "2023-09-20T15:07:49.52057324Z"
+    appVersion: 2.0.2
+    created: "2023-09-20T15:08:11.089902319Z"
     description: A Helm chart for Kubernetes
-    digest: 33dcbdba7d619b9a20c4142961309fda055d2247ceba3c9a73f2a7d44bbe4ba1
+    digest: 2e4f7830b716ebd52065873997752ba425b2991edb03629bd9e25c885eefbe5d
     name: api-gateway
     type: application
     urls:
@@ -21,4 +21,4 @@ entries:
     urls:
     - https://SolomonAIEngineering.github.io/backend-api-gateway/api-gateway/api-gateway-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-20T15:07:49.519664544Z"
+generated: "2023-09-20T15:08:11.088980903Z"
