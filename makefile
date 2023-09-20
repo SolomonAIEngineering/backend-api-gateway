@@ -30,16 +30,16 @@ define update-version
 	make sync-kustomize
 endef
 
-minor-version-set:
+minor-version-set: 
 	$(call update-version,$(MINOR_VERSION))
 
-major-version-set:
+major-version-set: 
 	$(call update-version,$(MAJOR_VERSION))
 
 patch-version-set:
 	$(call update-version,$(PATCH_VERSION))
 	
-release-minor-version: 
+release-minor-version:  autogen
 	echo "Releasing $(MINOR_VERSION)"
 	git checkout -b release-$(MINOR_VERSION)
 	make minor-version-set
@@ -49,7 +49,7 @@ release-minor-version:
 	git push --set-upstream origin release-$(MINOR_VERSION)
 	git push origin v$(MINOR_VERSION)
 
-release-major-version: 
+release-major-version: autogen
 	echo "Releasing $(MAJOR_VERSION)"
 	git checkout -b release-$(MAJOR_VERSION)
 	make major-version-set 
@@ -59,7 +59,7 @@ release-major-version:
 	git push --set-upstream origin release-$(MAJOR_VERSION)
 	git push origin v$(MAJOR_VERSION)
 
-release-patch-version:
+release-patch-version: autogen
 	echo "Releasing $(PATCH_VERSION)"
 	git checkout -b release-$(PATCH_VERSION)
 	make patch-version-set
