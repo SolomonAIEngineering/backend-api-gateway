@@ -22,7 +22,7 @@ define update-version
 	charts/api-gateway/Chart.yaml \
 	kustomize/base/deployment.yaml \
 	kustomize/overlays/production/patch-deployment.yaml \
-	kustomize/overlays/staging/patch-deployment.yaml; \
+	kustomize/overlays/staging/patch-deployment.yaml"; \
 	for file in $$FILES; do \
 		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
 	done; \
