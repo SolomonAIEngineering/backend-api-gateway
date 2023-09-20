@@ -1,5 +1,5 @@
 ---
-# Source: api-gateway/templates/configmap.yaml
+# Source: api-gateway/templates/configmap.yaml  
 apiVersion: v1
 kind: ConfigMap
 metadata:
