@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - '*'
+    branches:
+      - release-*
       
 permissions:
   contents: write # needed to write releases
