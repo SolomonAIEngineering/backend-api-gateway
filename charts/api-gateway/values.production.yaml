@@ -82,7 +82,7 @@ autoscaling:
   maxReplicas: 10
   targetCPUUtilizationPercentage: 95
   targetMemoryUtilizationPercentage: 95
-  requests: 2.0.00
+  requests: 20000
 
 nodeSelector: {}
 
