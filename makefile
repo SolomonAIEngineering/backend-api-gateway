@@ -140,3 +140,6 @@ validate-manifests:
 autogen: gen lint-output prettiefy swagger build-docs 
 
 precommit:  gen lint-output prettiefy swagger update-kustomize validate-manifests lint
+
+sync-kustomize:
+	./scripts/sync-kustomize.sh
