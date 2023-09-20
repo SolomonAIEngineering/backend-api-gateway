@@ -1,4 +1,73 @@
 OUTPUT_FILE_NAME=config/krakend-flexible-config.compiled.json
+PATCH_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%s.%d", $$2, $$3, $$4+1 }')
+MINOR_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%d.0", $$2, $$3+1 }')
+MAJOR_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%d.0.0", $$2+1 }')
+VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%s.%s", $$2, $$3, $$4 }')
+
+tell:
+	@echo Next Major Version: $(MAJOR_VERSION)
+	@echo Next Minor Version: $(MINOR_VERSION)
+	@echo Next Patch Version: $(PATCH_VERSION)
+
+
+# Define a function to update version
+define update-version
+	@next="$(1)"; \
+	current="$(VERSION)"; \
+	echo "version-set: current: $$current, next: $$next"; \
+	FILES="pkg/version/version.go \
+	charts/api-gateway/values.yaml \
+	charts/api-gateway/values.production.yaml \
+	charts/api-gateway/values.staging.yaml \
+	charts/api-gateway/Chart.yaml \
+	kustomize/base/deployment.yaml \
+	kustomize/overlays/production/patch-deployment.yaml \
+	kustomize/overlays/staging/patch-deployment.yaml"; \
+	for file in $$FILES; do \
+		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
+	done; \
+	echo "Version $$next set in code, deployment, chart and kustomize"; \
+	make sync-kustomize
+endef
+
+minor-version-set: 
+	$(call update-version,$(MINOR_VERSION))
+
+major-version-set: 
+	$(call update-version,$(MAJOR_VERSION))
+
+patch-version-set:
+	$(call update-version,$(PATCH_VERSION))
+	
+release-minor-version:  precommit
+	echo "Releasing $(MINOR_VERSION)"
+	git checkout -b release-$(MINOR_VERSION)
+	make minor-version-set
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(MINOR_VERSION)"
+	git tag v$(MINOR_VERSION)
+	git push --set-upstream origin release-$(MINOR_VERSION)
+	git push origin v$(MINOR_VERSION)
+
+release-major-version: precommit
+	echo "Releasing $(MAJOR_VERSION)"
+	git checkout -b release-$(MAJOR_VERSION)
+	make major-version-set 
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(MAJOR_VERSION)"
+	git tag v$(MAJOR_VERSION)
+	git push --set-upstream origin release-$(MAJOR_VERSION)
+	git push origin v$(MAJOR_VERSION)
+
+release-patch-version: precommit
+	echo "Releasing $(PATCH_VERSION)"
+	git checkout -b release-$(PATCH_VERSION)
+	make patch-version-set
+	git add .
+	git commit -m "bumping version from $(VERSION) to $(PATCH_VERSION)"
+	git tag v$(PATCH_VERSION)
+	git push --set-upstream origin release-$(PATCH_VERSION)
+	git push origin v$(PATCH_VERSION)
 
 validate:
 	krakend check --config krakend.json -ddd -t
@@ -65,13 +134,12 @@ build-docs:
 
 
 validate-manifests:
-	./scripts/validate-manifests.sh
+	./scripts/validate.sh
 
-
-boostrap-flux:
-	./scripts/bootstrap-flux.sh
-
-precommit: build-docs  update-kustomize  boostrap-flux:
 
 autogen: gen lint-output prettiefy swagger build-docs 
-	
+
+precommit:  gen lint-output prettiefy swagger update-kustomize validate-manifests lint
+
+sync-kustomize:
+	./scripts/sync-kustomize.sh

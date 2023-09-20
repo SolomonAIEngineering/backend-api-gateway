@@ -5,10 +5,10 @@ kind: Pod
 metadata:
   name: "api-gateway-test-connection"
   labels:
-    helm.sh/chart: api-gateway-0.1.0
+    helm.sh/chart: api-gateway-1.0.1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: api-gateway
-    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/version: "2.0.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test

@@ -91,9 +91,9 @@
     }
   },
   "host": [
-    "http://api-gateway-1.prod.svc.cluster.local:8080",
-    "http://api-gateway-2.prod.svc.cluster.local:8080",
-    "http://api-gateway-3.prod.svc.cluster.local:8080"
+    "http://api-gateway-1.platform.svc.cluster.local:8080",
+    "http://api-gateway-2.platform.svc.cluster.local:8080",
+    "http://api-gateway-3.platform.svc.cluster.local:8080"
   ],
   "endpoints": [
     {
@@ -112,7 +112,7 @@
         {
           "url_pattern": "/api/v1/user",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -164,7 +164,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -180,7 +180,7 @@
         {
           "url_pattern": "/api/v1/user/logout/{id}",
           "host": [
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
           ],
           "method": "POST",
           "extra_config": {
@@ -238,7 +238,7 @@
           "@comment": "we query for the userID based on the provided user email",
           "url_pattern": "/api/v1/user/account?email={email}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "group": "user_account",
           "target": "account",
@@ -285,7 +285,7 @@
           "@comment": "we call the social service to obtain the social profile of the user",
           "url_pattern": "/v1/social/user/{resp0_user_account.userAccountID}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "group": "user_profile",
@@ -336,7 +336,7 @@
           "@comment": "we call the financial service to obtain the financial profile of the user",
           "url_pattern": "/api/v1/profile/{resp0_user_account.userAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "group": "user_financial_profile",
@@ -381,7 +381,7 @@
           "@comment": "we call the authentication service with the user credentials in hopes of obtaining a jwt token",
           "url_pattern": "/api/v1/user/login?email={email}&password={password}",
           "host": [
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
           ],
           "method": "POST",
           "extra_config": {
@@ -436,7 +436,7 @@
         {
           "url_pattern": "/api/v1/user/login?email={email}&password={password}",
           "host": [
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -492,7 +492,7 @@
         {
           "url_pattern": "/api/v1/user/request-password-change",
           "host": [
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -548,7 +548,7 @@
         {
           "url_pattern": "/api/v1/user/reset-password",
           "host": [
-            "http://headless-authentication-service.prod.svc.cluster.local:9796"
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -604,7 +604,7 @@
         {
           "url_pattern": "/api/v1/user/webhook/password-reset",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -656,7 +656,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -672,7 +672,7 @@
         {
           "url_pattern": "/api/v1/user/{id}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -723,7 +723,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -739,7 +739,7 @@
         {
           "url_pattern": "/api/v1/user/{id}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -790,7 +790,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -806,7 +806,7 @@
         {
           "url_pattern": "/api/v1/user",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -864,7 +864,7 @@
         {
           "url_pattern": "/api/v1/user",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -922,7 +922,7 @@
         {
           "url_pattern": "/api/v1/user/account",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -976,7 +976,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -993,7 +993,7 @@
           "@comment": "we query for the userID based on the provided user userID",
           "url_pattern": "/api/v1/user/{userID}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1034,7 +1034,7 @@
           "@comment": "we call the social service to obtain the social profile of the user",
           "url_pattern": "/v1/social/user?userID={resp0_account.id}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1096,7 +1096,7 @@
         {
           "url_pattern": "/api/v1/user/verification/{userID}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1150,7 +1150,7 @@
         {
           "url_pattern": "/api/v1/user/email/{email}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1204,7 +1204,7 @@
         {
           "url_pattern": "/api/v1/user/email/{email}/exists",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1258,7 +1258,7 @@
         {
           "url_pattern": "/api/v1/user/username/{username}",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1312,7 +1312,7 @@
         {
           "url_pattern": "/api/v1/user/username/{username}/exists",
           "host": [
-            "http://user-service.prod.svc.cluster.local:9896"
+            "http://user-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1363,7 +1363,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1379,7 +1379,7 @@
         {
           "url_pattern": "/api/v1/user/{userId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -1430,7 +1430,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1446,7 +1446,7 @@
         {
           "url_pattern": "/v1/social/user/follow/accept/{followRecordId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1497,7 +1497,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1513,7 +1513,7 @@
         {
           "url_pattern": "/v1/social/user/{sourceUserId}/block/target-user-id/{targetUserId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1564,7 +1564,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1580,7 +1580,7 @@
         {
           "url_pattern": "/v1/social/user/{sourceUserId}/unblock/target-user-id/{targetUserId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1631,7 +1631,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1647,7 +1647,7 @@
         {
           "url_pattern": "/v1/social/user/{sourceUserId}/follow/target-user-id/{targetUserId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1698,7 +1698,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1718,7 +1718,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1769,7 +1769,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1785,7 +1785,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -1836,7 +1836,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1852,7 +1852,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -1903,7 +1903,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1919,7 +1919,7 @@
         {
           "url_pattern": "/v1/social/users/page-size/{pageSize}/page-number/{pageNumber}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -1970,7 +1970,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -1986,7 +1986,7 @@
         {
           "url_pattern": "/v1/social/communities/page-size/{pageSize}/page-number/{pageNumber}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2037,7 +2037,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2053,7 +2053,7 @@
         {
           "url_pattern": "/v1/social/community/{communityId}/requestor/{requestorProfileId}/type/{requestorProfileType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2104,7 +2104,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2120,7 +2120,7 @@
         {
           "url_pattern": "/v1/social/user/{sourceUserId}/follow/community/{targetCommunityProfileId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -2171,7 +2171,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2187,7 +2187,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/community",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -2238,7 +2238,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2254,7 +2254,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/community/{communityProfileId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -2305,7 +2305,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2321,7 +2321,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/community/{communityProfileId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -2372,7 +2372,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2388,7 +2388,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/follow/communities?limit={limit}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2439,7 +2439,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2455,7 +2455,7 @@
         {
           "url_pattern": "/v1/social/community/{communityId}/posts/blog",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2506,7 +2506,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2522,7 +2522,7 @@
         {
           "url_pattern": "/v1/social/community/{communityId}/topic/{topicName}/posts",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2573,7 +2573,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2589,7 +2589,7 @@
         {
           "url_pattern": "/v1/social/posts/blog/tag/{tagName}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2640,7 +2640,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2656,7 +2656,7 @@
         {
           "url_pattern": "/v1/social/user/post/{postId}/type/{postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -2707,7 +2707,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2723,7 +2723,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post?communityProfileId={communityId}&accountType={accountType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -2774,7 +2774,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2790,7 +2790,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/quality?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -2841,7 +2841,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2857,7 +2857,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/type/{postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -2908,7 +2908,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2924,7 +2924,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/type/{postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -2975,7 +2975,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -2991,7 +2991,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/type/{postType}/report",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3042,7 +3042,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3061,7 +3061,7 @@
         {
           "url_pattern": "/v1/social/community/{communityId}/timeline?feedType={feedType}&accountType={accountType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -3112,7 +3112,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3128,7 +3128,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/type/{postType}/share",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3179,7 +3179,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3198,7 +3198,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/timeline?feedType={feedType}&accountType={accountType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -3249,7 +3249,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3265,7 +3265,7 @@
         {
           "url_pattern": "/v1/social/post/{postId}/comment/{commentId}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -3316,7 +3316,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3332,7 +3332,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/quality?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3383,7 +3383,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3399,7 +3399,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/report",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3450,7 +3450,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3466,7 +3466,7 @@
         {
           "url_pattern": "/v1/social/{userId}/post/{postId}/comment?communityProfileId={communityId}&accountType={accountType}&postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3517,7 +3517,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3533,7 +3533,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -3584,7 +3584,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3600,7 +3600,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}/editor/{editorUserId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -3651,7 +3651,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3667,7 +3667,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}/editor/{editorUserId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -3718,7 +3718,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3734,7 +3734,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3785,7 +3785,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3801,7 +3801,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}/post/{postId}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -3852,7 +3852,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3868,7 +3868,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -3919,7 +3919,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -3935,7 +3935,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -3986,7 +3986,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4002,7 +4002,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/community/{communityId}/topic",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -4053,7 +4053,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4069,7 +4069,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/topics?limit={limit}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4120,7 +4120,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4136,7 +4136,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/discover/limit/{limit}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4187,7 +4187,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4203,7 +4203,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/follow/pending-requests",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4254,7 +4254,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4270,7 +4270,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/profile/{profileId}/account-type/{accountType}/following?limit={limit}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4321,7 +4321,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4337,7 +4337,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/profile/{profileId}/followers?limit={limit}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4388,7 +4388,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4404,7 +4404,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/poll",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -4455,7 +4455,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4471,7 +4471,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/poll/{pollId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -4522,7 +4522,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4538,7 +4538,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/poll/{pollId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4589,7 +4589,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4605,7 +4605,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/poll/{pollId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -4656,7 +4656,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4672,7 +4672,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/polls",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4723,7 +4723,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4739,7 +4739,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/type/{postType}/thread",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -4790,7 +4790,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4806,7 +4806,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{parentPostId}/type/{postType}/thread/target/{participantPostId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -4857,7 +4857,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4873,7 +4873,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/thread?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -4924,7 +4924,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -4940,7 +4940,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -4991,7 +4991,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5007,7 +5007,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5058,7 +5058,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5074,7 +5074,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5125,7 +5125,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5141,7 +5141,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/bookmark?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -5192,7 +5192,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5208,7 +5208,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/bookmark",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5259,7 +5259,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5275,7 +5275,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}/bookmark",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -5326,7 +5326,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5342,7 +5342,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/publication/{publicationId}/bookmark",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5393,7 +5393,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5409,7 +5409,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/note",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5460,7 +5460,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5476,7 +5476,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/note/{noteId}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -5527,7 +5527,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5543,7 +5543,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/note/{noteId}?postType={postType}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -5594,7 +5594,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5610,7 +5610,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5661,7 +5661,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5677,7 +5677,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -5728,7 +5728,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5744,7 +5744,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5795,7 +5795,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5811,7 +5811,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/replies",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -5862,7 +5862,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5878,7 +5878,7 @@
         {
           "url_pattern": "/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -5929,7 +5929,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -5945,7 +5945,7 @@
         {
           "url_pattern": "/v1/social/user/bookmarks/{userId}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -5996,7 +5996,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6012,7 +6012,7 @@
         {
           "url_pattern": "/v1/social/user/longform-content/type/{post_type}/page-size/{page_size}/page-number/{page_number}",
           "host": [
-            "http://social-service.prod.svc.cluster.local:9896"
+            "http://social-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6095,7 +6095,7 @@
       "backend": [
         {
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "url_pattern": "/api/v1/plaid/initiate-token-exchange",
           "method": "POST",
@@ -6175,7 +6175,7 @@
       "backend": [
         {
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "url_pattern": "/api/v1/plaid/initiate-token-update",
           "method": "POST",
@@ -6229,7 +6229,7 @@
         {
           "url_pattern": "/api/v1/plaid/exchange-token",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -6279,7 +6279,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6295,7 +6295,7 @@
         {
           "url_pattern": "/api/v1/accounts/user/{userID}/account/{virtualAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6346,7 +6346,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6362,7 +6362,7 @@
         {
           "url_pattern": "/api/v1/account/{userID}/investment/{investmentAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6413,7 +6413,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6429,7 +6429,7 @@
         {
           "url_pattern": "/api/v1/account/{userID}/liability/{liabilityAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6480,7 +6480,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6496,7 +6496,7 @@
         {
           "url_pattern": "/api/v1/account/{userID}/mortgage/{mortgageAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6547,7 +6547,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6563,7 +6563,7 @@
         {
           "url_pattern": "/api/v1/account/{userID}/student-loan/{studentLoanAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6614,7 +6614,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6630,7 +6630,7 @@
         {
           "url_pattern": "/api/v1/bank-account/{bankAccountID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6681,7 +6681,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6697,7 +6697,7 @@
         {
           "url_pattern": "/api/v1/bank-account/{bankAccountID}?userId={userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -6748,7 +6748,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6764,7 +6764,7 @@
         {
           "url_pattern": "/api/v1/bank-account",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -6815,7 +6815,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6831,7 +6831,7 @@
         {
           "url_pattern": "/api/v1/bank-account/profile/{userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -6882,7 +6882,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6898,7 +6898,7 @@
         {
           "url_pattern": "/api/v1/budget/{budgetID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -6949,7 +6949,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -6965,7 +6965,7 @@
         {
           "url_pattern": "/api/v1/budget/{budgetID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -7016,7 +7016,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7032,7 +7032,7 @@
         {
           "url_pattern": "/api/v1/budget?pocketId={pocketID}&smartGoalId={smartGoalID}&milestoneId={milestoneID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -7083,7 +7083,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7099,7 +7099,7 @@
         {
           "url_pattern": "/api/v1/budget",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -7150,7 +7150,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7166,7 +7166,7 @@
         {
           "url_pattern": "/api/v1/budget",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -7217,7 +7217,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7233,7 +7233,7 @@
         {
           "url_pattern": "/api/v1/link",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -7284,7 +7284,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7300,7 +7300,7 @@
         {
           "url_pattern": "/api/v1/milestone/{milestoneID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -7351,7 +7351,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7367,7 +7367,7 @@
         {
           "url_pattern": "/api/v1/milestone/{milestoneID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -7418,7 +7418,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7434,7 +7434,7 @@
         {
           "url_pattern": "/api/v1/milestone",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -7485,7 +7485,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7501,7 +7501,7 @@
         {
           "url_pattern": "/api/v1/milestone",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -7552,7 +7552,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7568,7 +7568,7 @@
         {
           "url_pattern": "/api/v1/milestone/smart-goal/{smartGoalID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -7619,7 +7619,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7635,7 +7635,7 @@
         {
           "url_pattern": "/api/v1/profile/{userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -7686,7 +7686,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7702,7 +7702,7 @@
         {
           "url_pattern": "/api/v1/profile/{userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -7753,7 +7753,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7769,7 +7769,7 @@
         {
           "url_pattern": "/api/v1/profile",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -7820,7 +7820,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7836,7 +7836,7 @@
         {
           "url_pattern": "/api/v1/profile",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -7887,7 +7887,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7903,7 +7903,7 @@
         {
           "url_pattern": "/api/v1/smart-goal",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -7954,7 +7954,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -7970,7 +7970,7 @@
         {
           "url_pattern": "/api/v1/smart-goal",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "PUT",
           "extra_config": {
@@ -8021,7 +8021,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8037,7 +8037,7 @@
         {
           "url_pattern": "/api/v1/smart-goal/pocket/{pocketID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8088,7 +8088,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8104,7 +8104,7 @@
         {
           "url_pattern": "/api/v1/smart-goal/{smartGoalId}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -8155,7 +8155,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8171,7 +8171,7 @@
         {
           "url_pattern": "/api/v1/forecast/{smartGoalId}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8222,7 +8222,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8238,7 +8238,7 @@
         {
           "url_pattern": "/api/v1/pocket/{pocketID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8289,7 +8289,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8305,7 +8305,7 @@
         {
           "url_pattern": "/api/v1/link/{linkID}?userId={userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8356,7 +8356,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8372,7 +8372,7 @@
         {
           "url_pattern": "/api/v1/links/{userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8423,7 +8423,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8439,7 +8439,7 @@
         {
           "url_pattern": "/api/v1/link/{linkID}/user/{userID}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "DELETE",
           "extra_config": {
@@ -8490,7 +8490,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8506,7 +8506,7 @@
         {
           "url_pattern": "/api/v1/transactions/recurring-transactions/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8557,7 +8557,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8573,7 +8573,7 @@
         {
           "url_pattern": "/api/v1/transactions/{user_id}/pageNumber/{page_number}/pageSize/{page_size}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8622,7 +8622,7 @@
         {
           "url_pattern": "/plaid/webhook",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9898"
+            "http://financial-integration-service.platform.svc.cluster.local:9898"
           ],
           "encoding": "no-op",
           "method": "POST",
@@ -8645,7 +8645,7 @@
           "url_pattern": "/stripe/webhook",
           "encoding": "no-op",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9898"
+            "http://financial-integration-service.platform.svc.cluster.local:9898"
           ],
           "method": "POST",
           "extra_config": {
@@ -8668,7 +8668,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8684,7 +8684,7 @@
         {
           "url_pattern": "/api/v1/stripe/subscription",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "POST",
           "extra_config": {
@@ -8744,7 +8744,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8760,7 +8760,7 @@
         {
           "url_pattern": "/api/v1/analytics/transaction-aggregates/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8811,7 +8811,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8827,7 +8827,7 @@
         {
           "url_pattern": "/api/v1/analytics/balance-history/user/{user_id}/pagenumber/{page_number}/pagesize/{page_size}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8878,7 +8878,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8894,7 +8894,7 @@
         {
           "url_pattern": "/api/v1/analytics/balance-history/account/{plaid_account_id}/pagenumber/{page_number}/pagesize/{page_size}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -8951,7 +8951,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -8967,7 +8967,7 @@
         {
           "url_pattern": "/api/v1/analytics/category-monthly-expenditure/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9024,7 +9024,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9040,7 +9040,7 @@
         {
           "url_pattern": "/api/v1/analytics/category-monthly-income/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9097,7 +9097,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9113,7 +9113,7 @@
         {
           "url_pattern": "/api/v1/analytics/category-monthly-transaction-count/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9169,7 +9169,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9185,7 +9185,7 @@
         {
           "url_pattern": "/api/v1/analytics/debt-to-income-ratio/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9242,7 +9242,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9258,7 +9258,7 @@
         {
           "url_pattern": "/api/v1/analytics/expenses/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9314,7 +9314,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9330,7 +9330,7 @@
         {
           "url_pattern": "/api/v1/analytics/finance-profile/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9386,7 +9386,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9402,7 +9402,7 @@
         {
           "url_pattern": "/api/v1/analytics/income-expense-ratio/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9459,7 +9459,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9475,7 +9475,7 @@
         {
           "url_pattern": "/api/v1/analytics/income/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9532,7 +9532,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9548,7 +9548,7 @@
         {
           "url_pattern": "/api/v1/analytics/merchant-monthly-expenditure/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9604,7 +9604,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9620,7 +9620,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-balance/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9676,7 +9676,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9692,7 +9692,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-expenditure/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9748,7 +9748,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9764,7 +9764,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-income/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9820,7 +9820,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9836,7 +9836,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-savings/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9893,7 +9893,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9909,7 +9909,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -9965,7 +9965,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -9981,7 +9981,7 @@
         {
           "url_pattern": "/api/v1/analytics/monthly-transaction-count/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10038,7 +10038,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10054,7 +10054,7 @@
         {
           "url_pattern": "/api/v1/analytics/payment-channel-expenditure/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10110,7 +10110,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10126,7 +10126,7 @@
         {
           "url_pattern": "/api/v1/analytics/total-investment/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10177,7 +10177,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10193,7 +10193,7 @@
         {
           "url_pattern": "/api/v1/analytics/melody-financial-context/user/{user_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10244,7 +10244,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10260,7 +10260,7 @@
         {
           "url_pattern": "/api/v1/analytics/transactions/user/{user_id}/plaid-account-id/{plaid_account_id}/pageNumber/{page_number}/pageSize/{page_size}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10311,7 +10311,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10327,7 +10327,7 @@
         {
           "url_pattern": "/api/v1/historical-account-balance/user/{user_id}/plaid-account-id/{plaid_account_id}",
           "host": [
-            "http://financial-integration-service.prod.svc.cluster.local:9896"
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "method": "GET",
           "extra_config": {
@@ -10382,7 +10382,7 @@
         },
         "auth/validator": {
           "alg": "RS256",
-          "jwk_url": "http://authentication-service.prod.svc.cluster.local:8000/jwks",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
           "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
@@ -10398,7 +10398,7 @@
         {
           "url_pattern": "/api/v1/articles",
           "host": [
-            "http://content-ingestion-service.prod.svc.cluster.local:9894"
+            "http://content-ingestion-service.platform.svc.cluster.local:9894"
           ],
           "method": "GET",
           "extra_config": {

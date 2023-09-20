@@ -12,7 +12,7 @@
     {
         "url_pattern":"/api/v1/user/{userId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -35,7 +35,7 @@
     {
         "url_pattern":"/v1/social/user/follow/accept/{followRecordId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -58,7 +58,7 @@
     {
         "url_pattern":"/v1/social/user/{sourceUserId}/block/target-user-id/{targetUserId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -81,7 +81,7 @@
     {
         "url_pattern":"/v1/social/user/{sourceUserId}/unblock/target-user-id/{targetUserId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -104,7 +104,7 @@
     {
         "url_pattern":"/v1/social/user/{sourceUserId}/follow/target-user-id/{targetUserId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -131,7 +131,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -154,7 +154,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -177,7 +177,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -200,7 +200,7 @@
     {
         "url_pattern":"/v1/social/users/page-size/{pageSize}/page-number/{pageNumber}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -223,7 +223,7 @@
     {
         "url_pattern":"/v1/social/communities/page-size/{pageSize}/page-number/{pageNumber}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -246,7 +246,7 @@
     {
         "url_pattern":"/v1/social/community/{communityId}/requestor/{requestorProfileId}/type/{requestorProfileType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -269,7 +269,7 @@
     {
         "url_pattern":"/v1/social/user/{sourceUserId}/follow/community/{targetCommunityProfileId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -292,7 +292,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/community",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -315,7 +315,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/community/{communityProfileId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -338,7 +338,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/community/{communityProfileId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -361,7 +361,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/follow/communities?limit={limit}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -384,7 +384,7 @@
     {
         "url_pattern":"/v1/social/community/{communityId}/posts/blog",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -407,7 +407,7 @@
     {
         "url_pattern":"/v1/social/community/{communityId}/topic/{topicName}/posts",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -430,7 +430,7 @@
     {
         "url_pattern":"/v1/social/posts/blog/tag/{tagName}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -453,7 +453,7 @@
     {
         "url_pattern":"/v1/social/user/post/{postId}/type/{postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -476,7 +476,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post?communityProfileId={communityId}&accountType={accountType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -499,7 +499,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/quality?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -522,7 +522,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/type/{postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -545,7 +545,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/type/{postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -568,7 +568,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/type/{postType}/report",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -594,7 +594,7 @@
     {
         "url_pattern":"/v1/social/community/{communityId}/timeline?feedType={feedType}&accountType={accountType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -617,7 +617,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/type/{postType}/share",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -643,7 +643,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/timeline?feedType={feedType}&accountType={accountType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -666,7 +666,7 @@
     {
         "url_pattern":"/v1/social/post/{postId}/comment/{commentId}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -689,7 +689,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/quality?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -712,7 +712,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/report",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -735,7 +735,7 @@
     {
         "url_pattern":"/v1/social/{userId}/post/{postId}/comment?communityProfileId={communityId}&accountType={accountType}&postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -758,7 +758,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -781,7 +781,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}/editor/{editorUserId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -804,7 +804,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}/editor/{editorUserId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -827,7 +827,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -850,7 +850,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}/post/{postId}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -873,7 +873,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -896,7 +896,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -919,7 +919,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/community/{communityId}/topic",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -942,7 +942,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/topics?limit={limit}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -965,7 +965,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/discover/limit/{limit}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -988,7 +988,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/follow/pending-requests",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1011,7 +1011,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/profile/{profileId}/account-type/{accountType}/following?limit={limit}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1034,7 +1034,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/profile/{profileId}/followers?limit={limit}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1057,7 +1057,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/poll",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1080,7 +1080,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/poll/{pollId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1103,7 +1103,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/poll/{pollId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1126,7 +1126,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/poll/{pollId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1149,7 +1149,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/polls",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1172,7 +1172,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/type/{postType}/thread",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1195,7 +1195,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{parentPostId}/type/{postType}/thread/target/{participantPostId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1218,7 +1218,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/thread?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1241,7 +1241,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1264,7 +1264,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1287,7 +1287,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/account-type/{accountType}/reaction/{reaction}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1310,7 +1310,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/bookmark?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1333,7 +1333,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/bookmark",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1356,7 +1356,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}/bookmark",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1379,7 +1379,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/publication/{publicationId}/bookmark",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1402,7 +1402,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/note",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1425,7 +1425,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/note/{noteId}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1448,7 +1448,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/note/{noteId}?postType={postType}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"PUT",
         "extra_config":{
@@ -1471,7 +1471,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1494,7 +1494,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"DELETE",
         "extra_config":{
@@ -1517,7 +1517,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1540,7 +1540,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/replies",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1563,7 +1563,7 @@
     {
         "url_pattern":"/v1/social/user/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
@@ -1586,7 +1586,7 @@
     {
         "url_pattern":"/v1/social/user/bookmarks/{userId}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
@@ -1609,7 +1609,7 @@
     {
         "url_pattern":"/v1/social/user/longform-content/type/{post_type}/page-size/{page_size}/page-number/{page_number}",
         "host":[
-            "http://social-service.prod.svc.cluster.local:9896"
+            {{ include "social_service_host.tmpl" }}
         ],
         "method":"GET",
         "extra_config":{
