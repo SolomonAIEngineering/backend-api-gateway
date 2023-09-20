@@ -110,3 +110,6 @@ linkerd:
     config.linkerd.io/access-log: json
     config.linkerd.io/proxy-log-format: json
     config.linkerd.io/proxy-log-level: warn
+
+tests:
+  enabled: false
