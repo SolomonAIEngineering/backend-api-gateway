@@ -45,9 +45,9 @@ release-minor-version:  precommit
 	make minor-version-set
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(MINOR_VERSION)"
-	git tag v$(MINOR_VERSION)
+	git tag $(MINOR_VERSION)
 	git push --set-upstream origin release-$(MINOR_VERSION)
-	git push origin v$(MINOR_VERSION)
+	git push origin $(MINOR_VERSION)
 
 release-major-version: precommit
 	echo "Releasing $(MAJOR_VERSION)"
@@ -55,9 +55,9 @@ release-major-version: precommit
 	make major-version-set 
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(MAJOR_VERSION)"
-	git tag v$(MAJOR_VERSION)
+	git tag $(MAJOR_VERSION)
 	git push --set-upstream origin release-$(MAJOR_VERSION)
-	git push origin v$(MAJOR_VERSION)
+	git push origin $(MAJOR_VERSION)
 
 release-patch-version: precommit
 	echo "Releasing $(PATCH_VERSION)"
@@ -65,9 +65,9 @@ release-patch-version: precommit
 	make patch-version-set
 	git add .
 	git commit -m "bumping version from $(VERSION) to $(PATCH_VERSION)"
-	git tag v$(PATCH_VERSION)
+	git tag $(PATCH_VERSION)
 	git push --set-upstream origin release-$(PATCH_VERSION)
-	git push origin v$(PATCH_VERSION)
+	git push origin $(PATCH_VERSION)
 
 validate:
 	krakend check --config krakend.json -ddd -t
