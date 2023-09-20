@@ -39,7 +39,7 @@ major-version-set:
 patch-version-set:
 	$(call update-version,$(PATCH_VERSION))
 	
-release-minor-version:  autogen
+release-minor-version:  precommit
 	echo "Releasing $(MINOR_VERSION)"
 	git checkout -b release-$(MINOR_VERSION)
 	make minor-version-set
@@ -49,7 +49,7 @@ release-minor-version:  autogen
 	git push --set-upstream origin release-$(MINOR_VERSION)
 	git push origin v$(MINOR_VERSION)
 
-release-major-version: autogen
+release-major-version: precommit
 	echo "Releasing $(MAJOR_VERSION)"
 	git checkout -b release-$(MAJOR_VERSION)
 	make major-version-set 
@@ -59,7 +59,7 @@ release-major-version: autogen
 	git push --set-upstream origin release-$(MAJOR_VERSION)
 	git push origin v$(MAJOR_VERSION)
 
-release-patch-version: autogen
+release-patch-version: precommit
 	echo "Releasing $(PATCH_VERSION)"
 	git checkout -b release-$(PATCH_VERSION)
 	make patch-version-set
