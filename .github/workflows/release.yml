@@ -116,17 +116,6 @@ jobs:
             --source="${{ github.event.repository.html_url }}" \
             --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
           flux tag artifact oci://ghcr.io/solomonaiengineering/manifests/api-gateway:${{ steps.prep.outputs.VERSION }} --tag latest
-      - name: Publish base image
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          sbom: true
-          provenance: true
-          builder: ${{ steps.buildx.outputs.name }}
-          context: .
-          platforms: linux/amd64,linux/arm64/v8
-          file: ./Dockerfile.base
-          tags: docker.io/feelguuds/api-gateway-base:latest
       - name: Publish config artifact
         run: |
           flux push artifact oci://ghcr.io/solomonaiengineering/config/api-gateway-deploy:${{ steps.prep.outputs.VERSION }} \
