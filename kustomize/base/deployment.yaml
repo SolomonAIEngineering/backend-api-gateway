@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20230920155617"
+        timestamp: "20230920211003"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"

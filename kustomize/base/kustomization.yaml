@@ -4,6 +4,5 @@ namespace: platform
 resources:
 - configmap.yaml
 - deployment.yaml
-- pod.yaml
 - service.yaml
 - serviceaccount.yaml

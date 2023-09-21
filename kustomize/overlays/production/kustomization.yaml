@@ -6,6 +6,5 @@ resources:
 patches:
 - path: patch-configmap.yaml
 - path: patch-deployment.yaml
-- path: patch-pod.yaml
 - path: patch-service.yaml
 - path: patch-serviceaccount.yaml
