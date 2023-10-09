@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20230920211003"
+        timestamp: "20231009172129"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
@@ -62,6 +62,6 @@ spec:
               cpu: 1000m
               memory: 1Gi
             requests:
-              cpu: 500m
+              cpu: 100m
               memory: 512Mi
 
