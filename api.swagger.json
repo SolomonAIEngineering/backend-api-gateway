@@ -1,22 +1,22 @@
 {
 	"variables": [
 		{
-			"id": "fbcae63c-d9bc-4b4a-a5fb-cfb9e0ffd679",
+			"id": "e499cc20-3f73-4c43-baab-a445b9215ec9",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "547d77ff-2b3e-4295-9532-12a4430702d1",
+			"id": "c5982121-6609-44e3-8a93-2bac191cd9ae",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
 		}
 	],
 	"info": {
-		"name": "Simfinii Backend API Gateway",
-		"_postman_id": "f4eef9d8-4e36-4caf-8e1c-b6ac7eb98140",
-		"description": "collection parsed at 2023-09-20 15:51:03.328557 -0400 EDT m=+0.005141334",
+		"name": "Solomon AI Backend API Gateway",
+		"_postman_id": "78f39704-78d8-4afd-9c39-cae0c7fd3c10",
+		"description": "collection parsed at 2023-11-03 01:27:27.746017 -0400 EDT m=+0.006805709",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -127,6 +127,86 @@
 					],
 					"path": [
 						"v1/gateway/webhook/password-reset"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/login/:email/:password/type/:profileType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/registration",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/registration",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/registration"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/login/:email/:password/type/:profileType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/webhook/password-reset",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/webhook/password-reset",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/webhook/password-reset"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/login/:email/:password/type/:profileType"
 					]
 				},
 				"method": "POST"
@@ -303,6 +383,198 @@
 					],
 					"path": [
 						"v1/gateway/user/username/:username/exists"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/:id/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/:id/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/:id/type/:profileType"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/user/:id/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/user/:id/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/user/:id/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/verification/:userID/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/verification/:userID/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/verification/:userID/type/:profileType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/username/:username/exists/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/username/:username/exists/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/username/:username/exists/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/username/:username/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/username/:username/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/username/:username/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/email/:email/exists/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/email/:email/exists/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/email/:email/exists/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/email/:email/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/email/:email/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/email/:email/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/business/settings/:userId",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/business/settings/:userId",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/business/settings/:userId"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/account",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/account",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/account"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/profile/:userId/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/profile/:userId/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/profile/:userId/type/:profileType"
 					]
 				},
 				"method": "GET"
