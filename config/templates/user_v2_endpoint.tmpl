@@ -3,7 +3,7 @@
 {{$host := .}}
 {
     "@comment":"This endpoint enables the client to delete a user account. ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
-    "endpoint":"/v1/gateway/user/{id}/type/{profileType}",
+    "endpoint":"/v2/gateway/user/{id}/type/{profileType}",
     "method":"DELETE",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -26,7 +26,7 @@
 },
 {
     "@comment":"This endpoint enables the client to get a user account by id ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
-    "endpoint":"/v1/gateway/user/{id}/type/{profileType}",
+    "endpoint":"/v2/gateway/user/{id}/type/{profileType}",
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -34,7 +34,7 @@
     },
     "backend":[
     {
-        "url_pattern":"/api/v1/user/{id}?profileType={profileType}",
+        "url_pattern":"/api/v2/user/{id}?profileType={profileType}",
         "host":[
             {{ include "user_service_host.tmpl" }}
         ],
@@ -122,7 +122,7 @@
     },
     "backend":[
     {
-        "url_pattern":"/api/v1/user/email/{email}/exists?profileType={profileType}",
+        "url_pattern":"/api/v2/user/email/{email}/exists?profileType={profileType}",
         "host":[
             {{ include "user_service_host.tmpl" }}
         ],
@@ -230,7 +230,7 @@
     ]
 },
 {
-    "@comment":"This endpoint returns the user record id if the user record exists ex - /api/v1/user?email=testuser@gmail.com&&username=testuser",
+    "@comment":"This endpoint returns the user record id if the user record exists ex - /api/v2/user?email=testuser@gmail.com&&username=testuser",
     "endpoint":"/v2/gateway/user",
     "input_query_strings": [
         "email",
