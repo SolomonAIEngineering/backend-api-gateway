@@ -3,8 +3,11 @@
 {{$service := .}}
 
 {{ template "authorization" $service.endpoint }},
+{{ template "authorization_v2" $service.endpoint }},
 {{ template "user" $service.endpoint }},
+{{ template "user_v2" $service.endpoint }},
 {{ template "social" $service.endpoint }},
 {{ template "financials" $service.endpoint }},
 {{ template "news" $service.endpoint }}
+
 {{end}}
