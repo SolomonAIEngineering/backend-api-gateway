@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "7289d1f6-134e-458b-8076-48fd2f665f27",
+			"id": "71bb4a29-f4b7-4621-b2bb-a5a1dd8d8538",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "b2ca07d7-1da5-4e40-8e18-e00c48a0d378",
+			"id": "10c821b0-28aa-4e01-98da-3441983ada0d",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "0d6bbbea-d4a3-4745-856f-14d377eacd45",
-		"description": "collection parsed at 2023-11-03 01:50:53.084705 -0400 EDT m=+0.006961543",
+		"_postman_id": "33cc867b-0132-4b2b-af11-fad818385777",
+		"description": "collection parsed at 2023-11-03 01:56:43.732102 -0400 EDT m=+0.006496959",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -175,22 +175,6 @@
 					],
 					"path": [
 						"v2/gateway/webhook/password-reset"
-					]
-				},
-				"method": "POST"
-			}
-		},
-		{
-			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
-			"request": {
-				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
-					"protocol": "{{SCHEMA}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"v2/gateway/user/login/:email/:password/type/:profileType"
 					]
 				},
 				"method": "POST"
