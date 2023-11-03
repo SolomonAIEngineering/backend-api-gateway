@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "71bb4a29-f4b7-4621-b2bb-a5a1dd8d8538",
+			"id": "c1c0e0d9-e65c-498a-9723-d6e6455b5678",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "10c821b0-28aa-4e01-98da-3441983ada0d",
+			"id": "8759a0c4-f2e7-44b6-b701-93fcbcc498c7",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "33cc867b-0132-4b2b-af11-fad818385777",
-		"description": "collection parsed at 2023-11-03 01:56:43.732102 -0400 EDT m=+0.006496959",
+		"_postman_id": "0017091c-f628-4be2-a52a-2ce85c4cd6ae",
+		"description": "collection parsed at 2023-11-03 02:26:33.23898 -0400 EDT m=+0.006907210",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2687,6 +2687,182 @@
 					],
 					"path": [
 						"v1/gateway/service/financials/analytics/historical-account-balance/user/:user_id/plaidAccountId/:plaid_account_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/pocket/bank-account",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/pocket/bank-account",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/pocket/bank-account"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/pocket",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/pocket",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/pocket"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/pocket/:pocket_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/pocket/:pocket_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/pocket/:pocket_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/range",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/range",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/range"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/week",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/week",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/week"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/month",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/month",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/user/:user_id/account/:plaid_account_id/transactions/month"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/smart-goal/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/smart-goal/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/smart-goal/note"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/smart-goal/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/smart-goal/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/smart-goal/note"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/smart-goal/note/:note_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/smart-goal/note/:note_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/smart-goal/note/:note_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/smart-goal/:smart_goal_id/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/smart-goal/:smart_goal_id/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/smart-goal/:smart_goal_id/note"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/smart-goal/note/:note_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/smart-goal/note/:note_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/smart-goal/note/:note_id"
 					]
 				},
 				"method": "GET"
