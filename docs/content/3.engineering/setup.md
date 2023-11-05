@@ -6,26 +6,20 @@ This document aims to serve as a guide to get this service and its dependencies 
 you follow the steps provided on this [minikube installation guide](https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-minikube/) prior to
 executing any of the below operations.
 
-## Install Pre-Commmit Hooks
-```bash {3} copy
-pre-commit install
-pre-commit install-hooks
-```
-
 ### Running Service Locally With Live Reload During Development
 To run the service and it's dependencies with live reload enabled to expedite development, open the terminal and run the following command
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
-make compose-up
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
+make start-local-live
 ```
 
 This spins up the service and its dependencies as part of a docker-compose workflow. If you do not want to see the service logs and would rather
-opt to run the service in the background ... run `make compose-up-d instead
+opt to run the service in the background ... run `make start-local` instead
 
 ### Running Minikube locally
 In order to start a local minikube cluster perform the following
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make mk-start
 ```
 
@@ -36,22 +30,22 @@ this container as well as dependent services into the cluster. Lastly, it opens,
 deployment, services, pods, ...etc
 
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
-make kube-deploy
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
+make mk-launch-new
 ```
 
-If you want to deploy with the docker container present on dockerhub instead of local changes, run `make kube-deploy` instead.
+If you want to deploy with the docker container present on dockerhub instead of local changes, run `make mk-launch` instead.
 
 ### Stopping And Deleting Minikube Cluster
 To stop minikube cluster run
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make mk-stop
 ```
 
 To delete the minikube cluster run
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make mk-delete
 ```
 
@@ -59,7 +53,7 @@ make mk-delete
 #### Unit Tests
 To run service level unit tests run
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make test
 ```
 
@@ -70,13 +64,13 @@ run a set of tests against them all
 To run integration tests, make sure you have a minikube cluster up and running as well as have deployed the set of dependent helm charts. For
 reference, utilize the following commands to execute a suite of E2E tests against the service in the cluster.
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make integration-test
 ```
 
 #### Suite Of Tests
 To run all tests execute the following set of commands
 ```bash
-cd ~/go/src/github.com/SolomonAIEngineering/backend-financial-service
+cd ~/go/src/github.com/SolomonAIEngineering/backend-headless-authentication-service
 make test
 ```
