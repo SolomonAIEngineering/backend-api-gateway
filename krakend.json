@@ -1,7 +1,7 @@
 {
   "version": 3,
   "port": 8080,
-  "name": "Simfinii Backend API Gateway",
+  "name": "Solomon AI Backend API Gateway",
   "cache_ttl": "3600s",
   "timeout": "15s",
   "read_timeout": "15s",
@@ -11,14 +11,14 @@
   "max_idle_connections": 150,
   "extra_config": {
     "documentation/openapi": {
-      "description": "This is the api gateway for the simfiny backend",
+      "description": "This is the api gateway for the solomon ai backend",
       "version": "1.0.0",
-      "host": "simfiny.io",
+      "host": "http://solomon-ai.io",
       "base_path": "/v1",
       "terms_of_service": "http://url.to/tos",
       "contact_name": "yoan yomba",
-      "contact_email": "yoan@simfiny.com",
-      "contact_url": "https://simfiny.io/developers",
+      "contact_email": "yoanyomba@solomon-ai.co",
+      "contact_url": "http://solomon-ai.io/contact",
       "license_name": "MIT",
       "license_url": "https://opensource.org/licenses/MIT",
       "tags": [
@@ -38,7 +38,7 @@
     },
     "telemetry/logging": {
       "level": "ERROR",
-      "prefix": "[SIMFINY API-GATEWAY]",
+      "prefix": "[SOLOMON-AI API-GATEWAY]",
       "syslog": false,
       "stdout": true
     },
@@ -603,6 +603,319 @@
       "backend": [
         {
           "url_pattern": "/api/v1/user/webhook/password-reset",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "encoding": "no-op",
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/gateway/user/registration",
+      "@comment": "purpose: endpoint used to register a user profile against our backend",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "encoding": "no-op",
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/gateway/user/login/{email}/{password}/type/{profileType}",
+      "@comment": "purpose: authenticates a user with our backend given we are provided with a set of credentials. returned is an object { account: {} profile: {} jwt: xxxxxx }",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "proxy": {
+          "sequential": true
+        }
+      },
+      "backend": [
+        {
+          "@comment": "we query for the userID based on the provided user email",
+          "url_pattern": "/api/v2/user/account?email={email}&profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "group": "user_account",
+          "target": "account",
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "id": "userAccountID",
+            "authnAccountId": "userAuthnAccountID"
+          }
+        },
+        {
+          "@comment": "we call the social service to obtain the social profile of the user",
+          "url_pattern": "/v1/social/user/{resp0_user_account.authnAccountId}",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "group": "user_profile",
+          "target": "profile",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "Id": "userProfileID"
+          },
+          "deny": [
+            "NewsFeedTimelineID",
+            "NotificationTimelineID",
+            "PersonalFeedTimelineID"
+          ]
+        },
+        {
+          "@comment": "we call the financial service to obtain the financial profile of the user",
+          "url_pattern": "/api/v1/profile/{resp0_user_account.authnAccountId}",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "group": "user_financial_profile",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "id": "userFinancialProfileID"
+          }
+        },
+        {
+          "@comment": "we call the authentication service with the user credentials in hopes of obtaining a jwt token",
+          "url_pattern": "/api/v1/user/login?email={email}&password={password}",
+          "host": [
+            "http://headless-authentication-service.platform.svc.cluster.local:9796"
+          ],
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/gateway/webhook/password-reset",
+      "@comment": "purpose: endpoint used to change a users password after an account reset request. ex - https://production.solomon-ai.dev/api/v2/user/webhook/password-reset?accountId=<string>&token=<string>",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/webhook/password-reset",
           "host": [
             "http://user-service.platform.svc.cluster.local:9896"
           ],
@@ -1347,6 +1660,818 @@
             "backend/http": {
               "return_error_details": "message"
             }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to delete a user account. ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/{id}/type/{profileType}",
+      "method": "DELETE",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/{id}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "DELETE",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to get a user account by id ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/{id}/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/{id}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to verify an email address. ex - https://production.solomon-ai.dev/api/v2/user/verification/:userId/:profileType",
+      "endpoint": "/v2/gateway/user/verification/{userID}/type/{profileType}",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/verification/{userID}/{profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client check if an username exists",
+      "endpoint": "/v2/gateway/user/username/{username}/exists/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/username/{username}/exists?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client get an account by username. ex - https://production.solomon-ai.dev/api/v2/user/username/:username?profileType=PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/username/{username}/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/username/{username}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client check if an email exists. ex - https://production.solomon-ai.dev/api/v2/user/email/:email/exists?profileType=PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/email/{email}/exists/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/email/{email}/exists?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client get an account by email. ex - https://production.solomon-ai.dev/api/v2/user/email/:email?profileType=PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/email/{email}/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/email/{email}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client get a business accounts settings. ex - https://production.solomon-ai.dev/api/v2/user/business/settings/:userId",
+      "endpoint": "/v2/gateway/user/business/settings/{userId}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/business/settings/{userId}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to update a user account",
+      "endpoint": "/v2/gateway/user",
+      "method": "PUT",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "PUT",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to get a user account based on email or username",
+      "endpoint": "/v2/gateway/user/account",
+      "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+      ],
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/account",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint returns the user record id if the user record exists ex - /api/v2/user?email=testuser@gmail.com&&username=testuser",
+      "endpoint": "/v2/gateway/user",
+      "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+      ],
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/gateway/user/profile/{userId}/type/{profileType}",
+      "@comment": "purpose: obtains the profile and account of a given user based on provided userID",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "proxy": {
+          "sequential": true
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "@comment": "we query for the userId based on the provided user userID",
+          "url_pattern": "/api/v2/user/{userId}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "id": "userAccountId",
+            "userId": "authnAccountId"
+          }
+        },
+        {
+          "@comment": "we call the social service to obtain the social profile of the user",
+          "url_pattern": "/v1/social/user?userID={resp0_account.authnAccountId}",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "Id": "userProfileID"
+          },
+          "deny": [
+            "NewsFeedTimelineID",
+            "NotificationTimelineID",
+            "PersonalFeedTimelineID"
+          ]
+        },
+        {
+          "@comment": "we call the financial service to obtain the financial profile of the user",
+          "url_pattern": "/api/v1/profile/{resp0_user_account.authnAccountId}",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "group": "user_financial_profile",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          },
+          "mapping": {
+            "id": "userFinancialProfileID"
           }
         }
       ]
@@ -8481,6 +9606,9 @@
     {
       "@comment": "This endpoint returns the recurring transactions for a given user id",
       "endpoint": "/v1/gateway/service/financials/recurring-transactions/{user_id}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -8548,6 +9676,9 @@
     {
       "@comment": "This endpoint returns the transactions for a given user id",
       "endpoint": "/v1/gateway/service/financials/transactions/{user_id}/pageNumber/{page_number}/pageSize/{page_size}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -8733,7 +9864,8 @@
         "paymentChannel",
         "merchantName",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -8802,6 +9934,9 @@
     {
       "@comment": "Queries user account balance history for all connected accounts",
       "endpoint": "/v1/gateway/service/financials/analytics/balance-history/user/{user_id}/pagenumber/{page_number}/pagesize/{page_size}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -8940,7 +10075,8 @@
         "month",
         "personalFinanceCategoryPrimary",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9013,7 +10149,8 @@
         "month",
         "personalFinanceCategoryPrimary",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9086,7 +10223,8 @@
         "month",
         "personalFinanceCategoryPrimary",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9158,7 +10296,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9231,7 +10370,8 @@
         "month",
         "personalFinanceCategoryPrimary",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9303,7 +10443,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9375,7 +10516,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9448,7 +10590,8 @@
         "month",
         "personalFinanceCategoryPrimary",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9521,7 +10664,8 @@
         "month",
         "merchantName",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9593,7 +10737,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9665,7 +10810,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9737,7 +10883,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9809,7 +10956,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9882,7 +11030,8 @@
         "month",
         "securityId",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -9954,7 +11103,8 @@
       "input_query_strings": [
         "month",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -10027,7 +11177,8 @@
         "month",
         "paymentChannel",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -10099,7 +11250,8 @@
       "input_query_strings": [
         "securityId",
         "pageNumber",
-        "pageSize"
+        "pageSize",
+        "profileType"
       ],
       "method": "GET",
       "extra_config": {
@@ -10168,6 +11320,9 @@
     {
       "@comment": "Get financial context",
       "endpoint": "/v1/gateway/service/financials/analytics/melody-financial-context/user/{user_id}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -10235,6 +11390,9 @@
     {
       "@comment": "Get transactions for a given bank account id",
       "endpoint": "/v1/gateway/service/financials/analytics/transactions/user/{user_id}/plaidAccountId/{plaid_account_id}/pageNumber/{page_number}/pageSize/{page_size}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -10302,6 +11460,9 @@
     {
       "@comment": "Get historical balance for a given account",
       "endpoint": "/v1/gateway/service/financials/analytics/historical-account-balance/user/{user_id}/plaidAccountId/{plaid_account_id}",
+      "input_query_strings": [
+        "profileType"
+      ],
       "method": "GET",
       "extra_config": {
         "qos/ratelimit/router": {
@@ -10326,6 +11487,760 @@
       "backend": [
         {
           "url_pattern": "/api/v1/historical-account-balance/user/{user_id}/plaid-account-id/{plaid_account_id}",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Add default pocket to a bank account",
+      "endpoint": "/v1/gateway/service/financials/pocket/bank-account",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/pocket/bank-account",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Update A Pocket",
+      "endpoint": "/v1/gateway/service/financials/pocket",
+      "method": "PUT",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/pocket",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "PUT",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Delete A Pocket",
+      "endpoint": "/v1/gateway/service/financials/pocket/{pocket_id}",
+      "method": "DELETE",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/pocket/{pocket_id}",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "DELETE",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Get Transactions Between Time Ranges",
+      "endpoint": "/v1/gateway/service/financials/user/{user_id}/account/{plaid_account_id}/transactions/range",
+      "method": "GET",
+      "input_query_strings": [
+        "startTime",
+        "endTime",
+        "page",
+        "limit",
+        "profileType"
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/range",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Get Transactions For The Past Week",
+      "endpoint": "/v1/gateway/service/financials/user/{user_id}/account/{plaid_account_id}/transactions/week",
+      "method": "GET",
+      "input_query_strings": [
+        "page",
+        "limit",
+        "profileType"
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/week",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Get Transactions For The Past Month",
+      "endpoint": "/v1/gateway/service/financials/user/{user_id}/account/{plaid_account_id}/transactions/month",
+      "method": "GET",
+      "input_query_strings": [
+        "page",
+        "limit",
+        "profileType"
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/month",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Add Note to Smart Goal",
+      "endpoint": "/v1/gateway/service/financials/smart-goal/note",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/smart-goal/note",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Update Smart Note Tied To Smart Goal",
+      "endpoint": "/v1/gateway/service/financials/smart-goal/note",
+      "method": "PUT",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/smart-goal/note",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "PUT",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Delete Smart Note Tied To Smart Goal",
+      "endpoint": "/v1/gateway/service/financials/smart-goal/note/{note_id}",
+      "method": "DELETE",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/smart-goal/note/{note_id}",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "DELETE",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Gets Notes From Smart Goal",
+      "endpoint": "/v1/gateway/service/financials/smart-goal/{smart_goal_id}/note",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/smart-goal/{smart_goal_id}/note",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Get Notes From Smart Goal",
+      "endpoint": "/v1/gateway/service/financials/smart-goal/note/{note_id}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v1/smart-goal/note/{note_id}",
           "host": [
             "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],

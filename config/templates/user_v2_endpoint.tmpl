@@ -1,0 +1,326 @@
+{{define "user_v2"}}
+
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to delete a user account. ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/{id}/type/{profileType}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/{id}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"DELETE",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a user account by id ex. https://production.solomon-ai.dev/api/v2/user/:userId?profileType=PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/{id}/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/{id}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to verify an email address. ex - https://production.solomon-ai.dev/api/v2/user/verification/:userId/:profileType",
+    "endpoint":"/v2/gateway/user/verification/{userID}/type/{profileType}",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/verification/{userID}/{profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"POST",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client check if an username exists",
+    "endpoint":"/v2/gateway/user/username/{username}/exists/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/username/{username}/exists?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get an account by username. ex - https://production.solomon-ai.dev/api/v2/user/username/:username?profileType=PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/username/{username}/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/username/{username}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client check if an email exists. ex - https://production.solomon-ai.dev/api/v2/user/email/:email/exists?profileType=PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/email/{email}/exists/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/email/{email}/exists?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get an account by email. ex - https://production.solomon-ai.dev/api/v2/user/email/:email?profileType=PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/email/{email}/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/email/{email}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get a business accounts settings. ex - https://production.solomon-ai.dev/api/v2/user/business/settings/:userId",
+    "endpoint":"/v2/gateway/user/business/settings/{userId}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/business/settings/{userId}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update a user account",
+    "endpoint":"/v2/gateway/user",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"PUT",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a user account based on email or username",
+    "endpoint":"/v2/gateway/user/account",
+    "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/account",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"This endpoint returns the user record id if the user record exists ex - /api/v2/user?email=testuser@gmail.com&&username=testuser",
+    "endpoint":"/v2/gateway/user",
+    "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "endpoint":"/v2/gateway/user/profile/{userId}/type/{profileType}",
+    "@comment": "purpose: obtains the profile and account of a given user based on provided userID",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "sequential_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "@comment": "we query for the userId based on the provided user userID",
+            "url_pattern":"/api/v2/user/{userId}?profileType={profileType}",
+            "host":[
+                {{ include "user_service_host.tmpl" }}
+            ],
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            },
+            "mapping": {
+                "id": "userAccountId",
+                "userId": "authnAccountId"
+            }
+        },
+        {
+            "@comment": "we call the social service to obtain the social profile of the user",
+            "url_pattern":"/v1/social/user?userID={resp0_account.authnAccountId}",
+            "host":[
+                {{ include "social_service_host.tmpl" }}
+            ],
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            },
+             "mapping": {
+                "Id": "userProfileID"
+            },
+            "deny": [
+                "NewsFeedTimelineID",
+                "NotificationTimelineID",
+                "PersonalFeedTimelineID"
+            ]
+        },
+        {
+            "@comment": "we call the financial service to obtain the financial profile of the user",
+            "url_pattern":"/api/v1/profile/{resp0_user_account.authnAccountId}",
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "method":"GET",
+            "group": "user_financial_profile",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            },
+             "mapping": {
+                "id": "userFinancialProfileID"
+            }
+        }
+    ]
+}
+{{end}}
