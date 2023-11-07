@@ -8,7 +8,7 @@ metadata:
     helm.sh/chart: api-gateway-1.0.1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: api-gateway
-    app.kubernetes.io/version: "2.0.3"
+    app.kubernetes.io/version: "2.1.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 3
@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20231103022633"
+        timestamp: "20231106205328"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
@@ -43,7 +43,7 @@ spec:
         - name: api-gateway
           securityContext:
             {}
-          image: "feelguuds/api-gateway:2.0.3"
+          image: "feelguuds/api-gateway:2.1.0"
           imagePullPolicy: IfNotPresent
           command: [ "/usr/bin/krakend" ]
           args: [ "run", "-d", "-c", "/etc/krakend/krakend.json", "-p", "8080" ]

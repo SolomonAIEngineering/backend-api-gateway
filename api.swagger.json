@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "c1c0e0d9-e65c-498a-9723-d6e6455b5678",
+			"id": "1c0354c5-94b9-407a-9a52-f80efc5fb4bf",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "8759a0c4-f2e7-44b6-b701-93fcbcc498c7",
+			"id": "e93ca97a-f5c5-429e-b214-3fe8ff4a45b3",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "0017091c-f628-4be2-a52a-2ce85c4cd6ae",
-		"description": "collection parsed at 2023-11-03 02:26:33.23898 -0400 EDT m=+0.006907210",
+		"_postman_id": "d3819f4d-db37-4ff2-89b9-c9efc2b0fedb",
+		"description": "collection parsed at 2023-11-06 20:53:24.98133 -0800 PST m=+0.008254084",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
