@@ -143,3 +143,6 @@ precommit:  gen lint-output prettiefy swagger update-kustomize validate-manifest
 
 sync-kustomize:
 	./scripts/sync-kustomize.sh
+
+release:
+	./scripts/release.sh
