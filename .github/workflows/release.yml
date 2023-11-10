@@ -138,26 +138,3 @@ jobs:
         if: failure()
         run: |
           kubectl logs -l app=api-gateway || true
-
-  deploy:
-    needs: [publish-artifacts]
-    runs-on: ubuntu-latest
-    env:
-      working-directory: .
-      production-cluster: 8f6d9b0a-c838-442b-b6ef-bf710718930e
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Update SHA
-        run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/sha/_meta
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-      - name: Deploy To Production Environment
-        working-directory: ${{env.working-directory}}
-        run: |
-          doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.production-cluster}}
-          kustomize build ./kustomize/overlays/production | kubectl apply -f - --namespace=platform
