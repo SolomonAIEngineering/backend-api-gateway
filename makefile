@@ -24,7 +24,7 @@ define update-version
 	kustomize/overlays/production/patch-deployment.yaml \
 	kustomize/overlays/staging/patch-deployment.yaml"; \
 	for file in $$FILES; do \
-		/usr/bin/sed -i '' "s/$$current/$$next/g" $$file; \
+		sed -i '' "s/$$current/$$next/g" $$file; \
 	done; \
 	echo "Version $$next set in code, deployment, chart and kustomize"; \
 	make sync-kustomize
