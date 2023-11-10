@@ -48,6 +48,7 @@ release-minor-version:
 	git tag $(MINOR_VERSION)
 	git push --set-upstream origin release-$(MINOR_VERSION)
 	git push origin $(MINOR_VERSION)
+	gh pr create -B main -H release$(MINOR_VERSION) --title "Merge release$(MINOR_VERSION) into main" --body 'Created by Github action'
 
 release-major-version: 
 	echo "Releasing $(MAJOR_VERSION)"
@@ -58,6 +59,7 @@ release-major-version:
 	git tag $(MAJOR_VERSION)
 	git push --set-upstream origin release-$(MAJOR_VERSION)
 	git push origin $(MAJOR_VERSION)
+	gh pr create -B main -H release$(MAJOR_VERSION) --title "Merge release$(MAJOR_VERSION) into main" --body 'Created by Github action'
 
 release-patch-version: 
 	echo "Releasing $(PATCH_VERSION)"
@@ -68,6 +70,7 @@ release-patch-version:
 	git tag $(PATCH_VERSION)
 	git push --set-upstream origin release-$(PATCH_VERSION)
 	git push origin $(PATCH_VERSION)
+	gh pr create -B main -H release$(PATCH_VERSION) --title "Merge release$(PATCH_VERSION) into main" --body 'Created by Github action'
 
 validate:
 	krakend check --config krakend.json -ddd -t
