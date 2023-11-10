@@ -32,8 +32,8 @@ update_version() {
     done
     echo "Version $next set in code, deployment, chart, and kustomize"
     # Uncomment the line below if you want to run 'make sync-kustomize'
-    # make sync-kustomize
+    make sync-kustomize
 }
 
 # Example usage of update_version function
-# update_version $MAJOR_VERSION
+update_version $MINOR_VERSION
