@@ -29,6 +29,8 @@ jobs:
       - name: Setup kubeconform
         uses: ./.github/actions/kubeconform
       - name: Execute And Release A Minor Version Of The Service
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "yoanyombapro@gmail.com"
           git config --global user.name "Yoan Yomba"
