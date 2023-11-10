@@ -6,10 +6,19 @@ on:
       - main
 
 permissions:
-  contents: write # needed to write releases
-  id-token: write # needed for keyless signing
-  packages: write # needed for ghcr access
-
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  discussions: write
+  packages: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 jobs:
   build:
     runs-on: ubuntu-latest
