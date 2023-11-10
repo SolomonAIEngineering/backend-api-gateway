@@ -722,7 +722,7 @@
             "http://user-service.platform.svc.cluster.local:9896"
           ],
           "group": "user_account",
-          "target": "account",
+          "target": "userAccount",
           "method": "GET",
           "extra_config": {
             "modifier/martian": {
