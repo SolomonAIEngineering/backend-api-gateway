@@ -43,3 +43,4 @@ git commit -m "bumping version from $VERSION to $MINOR_VERSION"
 git tag $MINOR_VERSION
 git push --set-upstream origin release-$MINOR_VERSION
 git push origin $MINOR_VERSION
+gh pr create -B main -H release-$MINOR_VERSION --title "Merge release-$MINOR_VERSION into main" --body 'Created by Github action'
