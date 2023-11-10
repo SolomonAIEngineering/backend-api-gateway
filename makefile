@@ -40,7 +40,7 @@ patch-version-set:
 	$(call update-version,$(PATCH_VERSION))
 	
 release-minor-version:  
-	gh auth login --with-token < ~/.github_token
+	gh auth login
 	echo "Releasing $(MINOR_VERSION)"
 	git checkout -b release-$(MINOR_VERSION)
 	make minor-version-set
@@ -52,7 +52,7 @@ release-minor-version:
 	gh pr create -B main -H release$(MINOR_VERSION) --title "Merge release$(MINOR_VERSION) into main" --body 'Created by Github action'
 
 release-major-version: 
-	gh auth login --with-token < ~/.github_token
+	gh auth login 
 	echo "Releasing $(MAJOR_VERSION)"
 	git checkout -b release-$(MAJOR_VERSION)
 	make major-version-set 
@@ -64,7 +64,7 @@ release-major-version:
 	gh pr create -B main -H release$(MAJOR_VERSION) --title "Merge release$(MAJOR_VERSION) into main" --body 'Created by Github action'
 
 release-patch-version: 
-	gh auth login --with-token < ~/.github_token
+	gh auth login
 	echo "Releasing $(PATCH_VERSION)"
 	git checkout -b release-$(PATCH_VERSION)
 	make patch-version-set
