@@ -39,7 +39,7 @@ update_version() {
 git checkout -b release-$MINOR_VERSION
 update_version $MINOR_VERSION
 git add .
-git commit -m "bumping version from $VERSION to $MAJOR_VERSION"
-git tag $MAJOR_VERSION
-git push --set-upstream origin release-$MAJOR_VERSION
-git push origin $MAJOR_VERSION
+git commit -m "bumping version from $VERSION to $MINOR_VERSION"
+git tag $MINOR_VERSION
+git push --set-upstream origin release-$MINOR_VERSION
+git push origin $MINOR_VERSION
