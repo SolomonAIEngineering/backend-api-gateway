@@ -1,10 +1,9 @@
 name: release
 
 on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
+  push:
+    tags:
+      - '*'
 
 permissions:
   contents: write # needed to write releases
