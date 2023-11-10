@@ -12,7 +12,7 @@ echo "Next Major Version: $MAJOR_VERSION"
 echo "Next Minor Version: $MINOR_VERSION"
 echo "Next Patch Version: $PATCH_VERSION"
 
-# Function to update version
+# Function to update version using perl
 update_version() {
     next="$1"
     current="$VERSION"
@@ -28,7 +28,7 @@ update_version() {
         "kustomize/overlays/staging/patch-deployment.yaml"
     )
     for file in "${FILES[@]}"; do
-        sed -i '' "s/$current/$next/g" "$file"
+        perl -pi -e "s/$current/$next/g" "$file"
     done
     echo "Version $next set in code, deployment, chart, and kustomize"
     # Uncomment the line below if you want to run 'make sync-kustomize'
