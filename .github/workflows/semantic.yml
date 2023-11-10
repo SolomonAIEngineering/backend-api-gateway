@@ -1,7 +1,8 @@
 name: Main Branch CI/CD Release
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
@@ -19,10 +20,11 @@ permissions:
   repository-projects: write
   security-events: write
   statuses: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'staging')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
