@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "60622fa8-7f4f-4ea2-bf73-fc428339ac65",
+			"id": "558de9c0-4bad-4b39-8f6e-573590dfcc56",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "4dff6ec0-9ddc-4a52-a68a-827e079d1ffe",
+			"id": "4bd172ac-c8fb-4df4-b3ba-9c28dde281e6",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "04c8d21b-22ac-4d40-a021-d030cfe4dd92",
-		"description": "collection parsed at 2023-11-10 04:04:52.849182 -0800 PST m=+0.008562126",
+		"_postman_id": "40b48cb3-49f9-4cb9-9e1b-998f22833a7b",
+		"description": "collection parsed at 2023-11-10 15:27:45.196159 -0800 PST m=+0.008430376",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -149,16 +149,16 @@
 			}
 		},
 		{
-			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
+			"name": "/v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
 			"request": {
 				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
 					"protocol": "{{SCHEMA}}",
 					"host": [
 						"{{HOST}}"
 					],
 					"path": [
-						"v2/gateway/user/login/:email/:password/type/:profileType"
+						"v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType"
 					]
 				},
 				"method": "POST"

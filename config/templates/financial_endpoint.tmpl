@@ -140,6 +140,9 @@
 {
     "@comment":"This endpoint enables the client to obtain an investment account by id",
     "endpoint":"/v1/gateway/financials/user/{userID}/investment/{investmentAccountID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -163,6 +166,9 @@
 {
     "@comment":"This endpoint enables the client to obtain a liability account by id",
     "endpoint":"/v1/gateway/financials/user/{userID}/liability/{liabilityAccountID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -186,6 +192,9 @@
 {
     "@comment":"This endpoint enables the client to obtain a mortgage account by id",
     "endpoint":"/v1/gateway/financials/user/{userID}/mortgage/{mortgageAccountID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -209,6 +218,9 @@
 {
     "@comment":"This endpoint enables the client to obtain a student loan account by id",
     "endpoint":"/v1/gateway/financials/user/{userID}/student-loan/{studentLoanAccountID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -807,6 +819,9 @@
 {
     "@comment":"This endpoint enables the client to get a link by id",
     "endpoint":"/v1/gateway/financials/user/{userID}/link/{linkID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -830,6 +845,9 @@
 {
     "@comment":"This endpoint enables the client to get all links for a given user",
     "endpoint":"/v1/gateway/financials/user/{userID}/links",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"GET",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -853,6 +871,9 @@
 {
     "@comment":"This endpoint enables the client to delete a link by iD",
     "endpoint":"/v1/gateway/financials/user/{userID}/link/{linkID}",
+    "input_query_strings": [
+      "profileType"
+    ],
     "method":"DELETE",
     "extra_config":{
         {{ include "rate_limit_endpoint.tmpl" }},
@@ -876,8 +897,8 @@
 {
     "@comment":"This endpoint returns the recurring transactions for a given user id",
     "endpoint":"/v1/gateway/service/financials/recurring-transactions/{user_id}",
-     "input_query_strings": [
-        "profileType"
+    "input_query_strings": [
+      "profileType"
     ],
     "method":"GET",
     "extra_config":{

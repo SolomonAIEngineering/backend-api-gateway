@@ -25,7 +25,7 @@
     ]
 },
 {
-    "endpoint":"/v2/gateway/user/login/{email}/{password}/type/{profileType}",
+    "endpoint":"/v2/gateway/user/login/{email}/{password}/type/{profileType}/finances/{financialProfileType}",
     "@comment": "purpose: authenticates a user with our backend given we are provided with a set of credentials. returned is an object { account: {} profile: {} jwt: xxxxxx }",
     "method":"POST",
     "extra_config":{
@@ -77,7 +77,7 @@
         },
         {
             "@comment": "we call the financial service to obtain the financial profile of the user",
-            "url_pattern":"/api/v1/profile/{resp0_user_account.userAuthnAccountID}",
+            "url_pattern":"/api/v1/profile/{resp0_user_account.userAuthnAccountID}?profileType={financialProfileType}",
             "host":[
                 {{ include "financial_integration_service_host.tmpl" }}
             ],
