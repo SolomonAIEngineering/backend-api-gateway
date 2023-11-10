@@ -32,4 +32,4 @@ jobs:
         run: |
           git config --global user.email "yoanyombapro@gmail.com"
           git config --global user.name "Yoan Yomba"
-          make release-major-version
+          make release

@@ -36,4 +36,10 @@ update_version() {
 }
 
 # Example usage of update_version function
+git checkout -b release-$MINOR_VERSION
 update_version $MINOR_VERSION
+git add .
+git commit -m "bumping version from $VERSION to $MAJOR_VERSION"
+git tag $MAJOR_VERSION
+git push --set-upstream origin release-$MAJOR_VERSION
+git push origin $MAJOR_VERSION
