@@ -8,7 +8,7 @@ metadata:
     helm.sh/chart: api-gateway-1.0.1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: api-gateway
-    app.kubernetes.io/version: "2.4.0"
+    app.kubernetes.io/version: "2.5.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20231110113233"
+        timestamp: "20231110113309"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
