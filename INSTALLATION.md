@@ -1,4 +1,4 @@
-## Installation Instructions
+## Installation Instructions (For Dev)
 ### Install Jq (MAC OS X)
 ```bash
 brew install jq
