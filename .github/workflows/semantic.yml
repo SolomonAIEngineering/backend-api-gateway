@@ -20,25 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      - name: Download KrakenD
-        run: |
-          # Define the desired KrakenD version
-          KRAKEND_VERSION="0.8.3"
-
-          # Download and extract KrakenD release
-          wget https://github.com/devopsfaith/krakend/releases/download/$KRAKEND_VERSION/krakend-$KRAKEND_VERSION-linux-amd64.tar.gz
-          tar -xzf krakend-$KRAKEND_VERSION-linux-amd64.tar.gz
-          chmod +x krakend
-
-          # Optionally, move KrakenD binary to a desired location
-          mv krakend /usr/local/bin/
-
-          # Cleanup downloaded files if needed
-          rm krakend-$KRAKEND_VERSION-linux-amd64.tar.gz
-
-      - name: Verify KrakenD version
-        run: |
-          krakend --version
 
       - name: Execute And Release A Minor Version Of The Service
         run: |
