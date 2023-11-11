@@ -14,7 +14,7 @@ jobs:
   publish-artifacts:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
         include:
           - os: ubuntu-latest
             release_suffix: ubuntu
@@ -22,7 +22,7 @@ jobs:
             release_suffix: mac
           - os: windows-latest
             release_suffix: windows
-        platform: [linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6]
+        platform: [linux/amd64, linux/arm64]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get Release Version
