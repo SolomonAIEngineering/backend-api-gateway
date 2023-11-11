@@ -28,8 +28,6 @@ jobs:
             release_suffix: ubuntu
           - os: macos-latest
             release_suffix: mac
-          - os: windows-latest
-            release_suffix: windows
         platform: [linux/amd64, linux/arm64]
     runs-on: ${{ matrix.os }}
     steps:
