@@ -41,7 +41,7 @@ jobs:
       - name: Setup Helm
         uses: azure/setup-helm@v3
         with:
-          version:${{ env.HELM_VERSION }}
+          version: ${{ env.HELM_VERSION }}
       - name: Setup kubeconform
         uses: ./.github/actions/kubeconform
       - name: Setup kubectl
