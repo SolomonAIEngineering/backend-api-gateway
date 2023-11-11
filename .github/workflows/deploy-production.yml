@@ -142,6 +142,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           changelog-file: CHANGELOG.md
           update-file: pkg/version/version.go
-          dry: false
           force-bump-patch-version: true
           changelog-generator-opt: "emojis=true"
