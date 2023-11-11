@@ -17,8 +17,8 @@ env:
   DOCKER_IMAGE: docker.io/feelguuds/api-gateway
   GHCR_REGISTRY: ghcr.io/solomonaiengineering
   K8S_VERSION: '1.28.0'
-  HELM_VERSION: '3.8.1'
-  GO_VERSION: '1.21.x'
+  HELM_VERSION: 3.8.1
+  GO_VERSION: 1.21.x
 
 jobs:
   publish-artifacts:
