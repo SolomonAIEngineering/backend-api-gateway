@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "34a877ad-2f15-43af-b24c-43e64f323842",
+			"id": "1d23626f-9c1b-4eaf-a912-f02c43d1b157",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "d1492821-7182-4a49-b854-c06c4e6a0d64",
+			"id": "e1b755c1-86bc-421b-a7f5-4029a00c24ca",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "1a7205ba-0f33-41d4-8c4e-e767bf4708c9",
-		"description": "collection parsed at 2023-11-10 16:43:23.492592 -0800 PST m=+0.007574293",
+		"_postman_id": "9a561911-aace-4821-9b67-fea8238d4fdf",
+		"description": "collection parsed at 2023-11-11 00:13:47.955553 -0800 PST m=+0.007152835",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -149,16 +149,32 @@
 			}
 		},
 		{
-			"name": "/v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
+			"name": "/v2/gateway/user/login/:email/:password/type/:profileType",
 			"request": {
 				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/login/:email/:password/type/:profileType",
 					"protocol": "{{SCHEMA}}",
 					"host": [
 						"{{HOST}}"
 					],
 					"path": [
-						"v2/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType"
+						"v2/gateway/user/login/:email/:password/type/:profileType"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v3/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v3/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v3/gateway/user/login/:email/:password/type/:profileType/finances/:financialProfileType"
 					]
 				},
 				"method": "POST"
