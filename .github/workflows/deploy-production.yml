@@ -1,4 +1,4 @@
-name: release
+name: deploy to production
 
 on:
   push:
@@ -133,3 +133,19 @@ jobs:
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.cluster}}
           ./deploy/deploy.sh -n platform
+
+  release-golang:
+    needs: [publish-artifacts, deploy]
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: go-semantic-release/action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          changelog-file: CHANGELOG.md
+          update-file: pkg/version/version.go
+          dry: false
+          force-bump-patch-version: true
+          changelog-generator-opt: "emojis=true"

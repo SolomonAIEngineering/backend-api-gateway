@@ -1,5 +1,5 @@
 # releases staging artifacts to the staging environment
-name: release-staging
+name: deploy to staging
 
 on:
   push:
