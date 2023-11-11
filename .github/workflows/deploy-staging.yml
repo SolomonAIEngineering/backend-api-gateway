@@ -130,4 +130,4 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.staging-cluster}}
-          ./deploy/deploy.sh -n platform
+          helm upgrade --install api-gateway ./charts/api-gateway --values ./charts/api-gateway/values.staging.yaml -n platform
