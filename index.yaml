@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  api-gateway:
+  - apiVersion: v2
+    appVersion: 4.0.0
+    created: "2023-11-11T00:46:52.594236319Z"
+    description: A Helm chart for Kubernetes
+    digest: 49d5c16f927dceae8c5aa6d4bd36dfb6b56663264a457406290ad861f9bef112
+    name: api-gateway
+    type: application
+    urls:
+    - https://charts.melodiy.io/api-gateway-1.0.1.tgz
+    version: 1.0.1
+generated: "2023-11-11T00:46:52.592999135Z"
