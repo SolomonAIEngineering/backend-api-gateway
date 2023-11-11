@@ -132,7 +132,7 @@ jobs:
 
   release-golang:
     needs: [publish-artifacts, deploy]
-    name: Build
+    name: Update Tags
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
