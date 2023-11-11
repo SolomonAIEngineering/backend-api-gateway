@@ -44,10 +44,10 @@ securityContext:
 service:
   type: NodePort
   port: 8080
-  nodeport: 32096
+  nodeport: 32093
   metrics:
     port: 8081
-    nodeport: 32098
+    nodeport: 32094
 
 ingress:
   enabled: false
