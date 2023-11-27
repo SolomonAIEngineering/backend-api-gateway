@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "1d23626f-9c1b-4eaf-a912-f02c43d1b157",
+			"id": "78dba54e-67f3-4812-8e87-b39f5ce437e8",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "e1b755c1-86bc-421b-a7f5-4029a00c24ca",
+			"id": "92a2f2bc-dce9-4bf3-bfe5-6ff19dd2c632",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "9a561911-aace-4821-9b67-fea8238d4fdf",
-		"description": "collection parsed at 2023-11-11 00:13:47.955553 -0800 PST m=+0.007152835",
+		"_postman_id": "4e0f8659-5637-4455-914b-5a1c270683b4",
+		"description": "collection parsed at 2023-11-27 03:43:33.393398 -0500 EST m=+0.008922917",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2895,6 +2895,502 @@
 					],
 					"path": [
 						"v1/gateway/articles"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/list",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/list",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/list"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/bulk",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/bulk",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/bulk"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/note"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/note"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/note/list",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/note/list",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/note/list"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/note/:note_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/split",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/split",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/split"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/unsplit",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/unsplit",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/unsplit"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/:transaction_id/split",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/:transaction_id/split",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/:transaction_id/split"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/transaction/search",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/transaction/search",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/transaction/search"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/list",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/list",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/list"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/:transaction_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/:transaction_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/:transaction_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/bulk",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/bulk",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/bulk"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/:transaction_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/:transaction_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/:transaction_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/:transaction_id/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/:transaction_id/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/:transaction_id/note"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/note",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/note",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/note"
+					]
+				},
+				"method": "PUT"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/:transaction_id/note/:note_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/:transaction_id/note/:note_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/:transaction_id/note/:note_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/transactions/recurring/:transaction_id/note/list",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/transactions/recurring/:transaction_id/note/list",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/transactions/recurring/:transaction_id/note/list"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/profile",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/profile",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/profile"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/profile/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/profile/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/profile/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/profile/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/profile/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/profile/:user_id"
+					]
+				},
+				"method": "DELETE"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/merge/initiate-token-exchange",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/merge/initiate-token-exchange",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/merge/initiate-token-exchange"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/merge/exchange-token",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/merge/exchange-token",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/merge/exchange-token"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/business-analysis/:user_id/chart-of-accounts",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/business-analysis/:user_id/chart-of-accounts",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/business-analysis/:user_id/chart-of-accounts"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/business-analysis/:user_id/transaction-details",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/business-analysis/:user_id/transaction-details",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/business-analysis/:user_id/transaction-details"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/accounting/business-analysis/:user_id/reference-details",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/accounting/business-analysis/:user_id/reference-details",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/accounting/business-analysis/:user_id/reference-details"
 					]
 				},
 				"method": "GET"
