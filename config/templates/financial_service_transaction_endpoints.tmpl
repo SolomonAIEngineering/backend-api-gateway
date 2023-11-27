@@ -1,0 +1,344 @@
+{{define "financial_service_transaction_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/list",
+    "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "financialAccountType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/list",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get update a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update a bulk set of transactions",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/bulk",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/bulk",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}",
+            "method":"DELETE",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to add a note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/note",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/note",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/{note_id}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/{note_id}",
+            "method":"DELETE",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to list notes on a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/list",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/list",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a note from a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/{note_id}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/{note_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to split a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/split",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/split",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to unsplit a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/unsplit",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/unsplit",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a set of transaction splits from a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/split",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/split",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to search a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/search",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "input_query_strings": [
+      "userId",
+      "profileType",
+      "pageNumber",
+      "pageSize",
+      "minAmount",
+      "maxAmount",
+      "category",
+      "startDate",
+      "endDate",
+      "financialAccountType"
+    ],
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/search",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+}
+{{end}}

@@ -8,6 +8,8 @@
 {{ template "user_v2" $service.endpoint }},
 {{ template "social" $service.endpoint }},
 {{ template "financials" $service.endpoint }},
-{{ template "news" $service.endpoint }}
-
+{{ template "news" $service.endpoint }},
+{{ template "financial_service_transaction_endpoints" $service.endpoint }},
+{{ template "financial_service_recurring_transaction_endpoints" $service.endpoint }},
+{{ template "accounting_service_endpoints" $service.endpoint }}
 {{end}}
