@@ -1,0 +1,187 @@
+{{define "accounting_service_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to create a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/profile",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile/{user_id}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/profile/{user_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile/{user_id}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/profile/{user_id}",
+            "method":"DELETE",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a merge api public link token",
+    "endpoint":"/v1/gateway/accounting/merge/initiate-token-exchange",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/merge/initiate-token-exchange",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to exchange a merge api public link token",
+    "endpoint":"/v1/gateway/accounting/merge/exchange-token",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/merge/exchange-token",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get chart of accounts",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/chart-of-accounts",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/chart-of-accounts",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get transaction details",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/transaction-details",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/transaction-details",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get reference details",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/reference-details",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "accounting_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/reference-details",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+}
+{{end}}

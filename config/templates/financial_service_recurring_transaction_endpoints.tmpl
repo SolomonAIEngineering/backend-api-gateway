@@ -1,0 +1,218 @@
+{{define "financial_service_recurring_transaction_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to get a set of recurring transactions in a paginated manner",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/list",
+    "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "financialAccountType",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/list",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get update a recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update a bulk set of recurring transactions",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/bulk",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/bulk",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}",
+            "method":"DELETE",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to add a note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/note",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/note",
+    "method":"PUT",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/note",
+            "method":"PUT",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note/{note_id}",
+    "method":"DELETE",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/note/{note_id}",
+            "method":"DELETE",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to list notes on a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note/list",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/note/list",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+}
+{{end}}
