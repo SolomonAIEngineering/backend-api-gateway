@@ -11383,7 +11383,7 @@
 
 {
     "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner",
-    "endpoint":"/v1/gateway/financials/transactions/transaction/list",
+    "endpoint":"/v1/gateway/financials/transactions/list",
     "input_query_strings": [
         "accountId",
         "userId",
