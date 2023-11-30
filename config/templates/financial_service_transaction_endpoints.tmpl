@@ -21,7 +21,7 @@
             "host":[
                 {{ include "financial_integration_service_host.tmpl" }}
             ],
-            "url_pattern":"/api/v1/transactions/transaction/list",
+            "url_pattern":"/api/v1/transactions",
             "method":"GET",
             "extra_config":{
                 {{ include "modifier_backend.tmpl" }},
@@ -205,7 +205,7 @@
             "host":[
                 {{ include "financial_integration_service_host.tmpl" }}
             ],
-            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/list",
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/notes",
             "method":"GET",
             "extra_config":{
                 {{ include "modifier_backend.tmpl" }},
