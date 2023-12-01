@@ -2,13 +2,14 @@
 {{$host := .}}
 {
     "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner",
-    "endpoint":"/v1/gateway/financials/transactions/transaction/list",
+    "endpoint":"/v1/gateway/financials/list-transactions",
     "input_query_strings": [
         "accountId",
         "userId",
         "pageNumber",
         "pageSize",
-        "financialAccountType"
+        "financialAccountType",
+        "profileType"
     ],
     "method":"GET",
     "extra_config":{
@@ -20,7 +21,36 @@
             "host":[
                 {{ include "financial_integration_service_host.tmpl" }}
             ],
-            "url_pattern":"/api/v1/transactions/transaction/list",
+            "url_pattern":"/api/v1/transactions",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner across all accounts",
+    "endpoint":"/v1/gateway/financials/list-transactions/all-accounts",
+    "input_query_strings": [
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/transactions/all_accounts",
             "method":"GET",
             "extra_config":{
                 {{ include "modifier_backend.tmpl" }},
@@ -204,7 +234,7 @@
             "host":[
                 {{ include "financial_integration_service_host.tmpl" }}
             ],
-            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/list",
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/notes",
             "method":"GET",
             "extra_config":{
                 {{ include "modifier_backend.tmpl" }},
