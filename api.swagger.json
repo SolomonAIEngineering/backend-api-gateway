@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "8c4a012e-242c-4b2a-940b-406cd12e0e8c",
+			"id": "973b73e9-699e-4d3c-a712-7a8e91e64623",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "8872cbfe-af83-4b97-9682-fdf93222be51",
+			"id": "ee8d60f4-d806-44bb-9be4-8f7ff38d6d0b",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "46958b66-efa8-4f4b-b787-e39f57700175",
-		"description": "collection parsed at 2023-11-30 13:08:37.025525 -0500 EST m=+0.007322001",
+		"_postman_id": "62d6c0dd-010f-4965-b70d-7b3c193e2438",
+		"description": "collection parsed at 2023-12-01 18:03:17.409935 -0500 EST m=+0.008012042",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2911,6 +2911,22 @@
 					],
 					"path": [
 						"v1/gateway/financials/list-transactions"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/list-transactions/all-accounts",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/list-transactions/all-accounts",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/list-transactions/all-accounts"
 					]
 				},
 				"method": "GET"

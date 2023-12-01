@@ -12650,6 +12650,79 @@
       ]
     },
     {
+      "@comment": "This endpoint enables the client to get a set of transactions in a paginated manner across all accounts",
+      "endpoint": "/v1/gateway/financials/list-transactions/all-accounts",
+      "input_query_strings": [
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "url_pattern": "/api/v1/transactions/all_accounts",
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
       "@comment": "This endpoint enables the client to get a singular transaction",
       "endpoint": "/v1/gateway/financials/transactions/transaction/{transaction_id}",
       "method": "GET",
