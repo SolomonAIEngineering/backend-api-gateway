@@ -48,6 +48,29 @@
     ]
 },
 {
+    "@comment":"This endpoint enables the client to get a canny sso token based on the user id ex. https://production.solomon-ai.dev/api/v2/user/canny/:userId/type/PROFILE_TYPE_UNSPECIFIED",
+    "endpoint":"/v2/gateway/user/canny/{id}/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/canny/{id}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
     "@comment":"This endpoint enables the client to verify an email address. ex - https://production.solomon-ai.dev/api/v2/user/verification/:userId/:profileType",
     "endpoint":"/v2/gateway/user/verification/{userID}/type/{profileType}",
     "method":"POST",
