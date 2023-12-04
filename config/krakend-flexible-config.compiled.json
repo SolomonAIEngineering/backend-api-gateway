@@ -11438,7 +11438,1969 @@
     }
     ]
 }
+,
 
+
+{
+    "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner",
+    "endpoint":"/v1/gateway/financials/list-transactions",
+    "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "financialAccountType",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a set of transactions in a paginated manner across all accounts",
+    "endpoint":"/v1/gateway/financials/list-transactions/all-accounts",
+    "input_query_strings": [
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/all_accounts",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get update a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update a bulk set of transactions",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/bulk",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/bulk",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}",
+    "method":"DELETE",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}",
+            "method":"DELETE",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to add a note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/note",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/note",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a note on a singular transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/{note_id}",
+    "method":"DELETE",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/{note_id}",
+            "method":"DELETE",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to list notes on a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/list",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/notes",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a note from a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/note/{note_id}",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/note/{note_id}",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to split a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/split",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/split",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to unsplit a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/unsplit",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/unsplit",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a set of transaction splits from a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/{transaction_id}/split",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/{transaction_id}/split",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to search a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/transaction/search",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "input_query_strings": [
+      "userId",
+      "profileType",
+      "pageNumber",
+      "pageSize",
+      "minAmount",
+      "maxAmount",
+      "category",
+      "startDate",
+      "endDate",
+      "financialAccountType"
+    ],
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/transaction/search",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+}
+,
+
+
+{
+    "@comment":"This endpoint enables the client to get a set of recurring transactions in a paginated manner",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/list",
+    "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "financialAccountType",
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurrings",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client get update a recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update a bulk set of recurring transactions",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/bulk",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/bulk",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}",
+    "method":"DELETE",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}",
+            "method":"DELETE",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to add a note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/note",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to update note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/note",
+    "method":"PUT",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/note",
+            "method":"PUT",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a note on a singular recurring transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note/{note_id}",
+    "method":"DELETE",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/note/{note_id}",
+            "method":"DELETE",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to list notes on a transaction",
+    "endpoint":"/v1/gateway/financials/transactions/recurring/{transaction_id}/note/list",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://financial-integration-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/transactions/recurring/{transaction_id}/notes",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+}
+,
+
+
+{
+    "@comment":"This endpoint enables the client to create a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/profile",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile/{user_id}",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/profile/{user_id}",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to delete a business account against the accounting service",
+    "endpoint":"/v1/gateway/accounting/profile/{user_id}",
+    "method":"DELETE",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/profile/{user_id}",
+            "method":"DELETE",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get a merge api public link token",
+    "endpoint":"/v1/gateway/accounting/merge/initiate-token-exchange",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/merge/initiate-token-exchange",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to exchange a merge api public link token",
+    "endpoint":"/v1/gateway/accounting/merge/exchange-token",
+    "method":"POST",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/merge/exchange-token",
+            "method":"POST",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get chart of accounts",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/chart-of-accounts",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/chart-of-accounts",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get transaction details",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/transaction-details",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/transaction-details",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to get reference details",
+    "endpoint":"/v1/gateway/accounting/business-analysis/{user_id}/reference-details",
+    "method":"GET",
+    "extra_config":{
+        "qos/ratelimit/router": {
+   "@comment":"A hundred thousand requests every second",
+    "max_rate": 6000000,
+    "every": "1m"
+},
+        "auth/validator": {
+    "alg": "RS256",
+    "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+    "cache": true,
+    "disable_jwk_security": true,
+    "operation_debug": true,
+    "propagate_claims": [
+        ["sub", "x-user-authn-id"]
+    ]
+}
+    },
+    "backend":[
+        {
+            "host":[
+                "http://accounting-service.platform.svc.cluster.local:9896"
+            ],
+            "url_pattern":"/api/v1/business-analysis/{user_id}/reference-details",
+            "method":"GET",
+            "extra_config":{
+                "modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+},
+                "qos/circuit-breaker": {
+    "interval": 30,
+    "timeout": 10,
+    "max_errors": 5,
+    "log_status_change": true,
+    "name": "simfiny-circuit-breaker"
+},
+                "backend/http": {
+    "return_error_details": "message"
+}
+            }
+        }
+    ]
+}
 
 ]
 }
