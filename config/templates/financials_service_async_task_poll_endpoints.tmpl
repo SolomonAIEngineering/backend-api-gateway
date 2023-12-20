@@ -1,0 +1,26 @@
+{{define "financials_service_async_task_poll_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to check the status of an async operation",
+    "endpoint":"/v1/gateway/financials/async-tasks/task/{task_id}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/async-task/{task_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+}
+{{end}}

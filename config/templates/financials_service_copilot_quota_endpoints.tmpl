@@ -1,0 +1,52 @@
+{{define "financials_service_copilot_quota_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"This endpoint enables the client to check if a given user has exceeded his or his question quota",
+    "endpoint":"/v1/gateway/financials/copilot/quota/exceeded/{user_id}",
+    "input_query_strings": [
+        "profileType"
+    ],
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/copilot/quota/exceeded/{user_id}",
+            "method":"GET",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+},
+{
+    "@comment":"This endpoint enables the client to record a question asked event",
+    "endpoint":"/v1/gateway/financials/copilot/quota/question/{user_id}",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/copilot/quota/question/{user_id}",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
+}
+{{end}}
