@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "756b73bf-c23e-4da2-8276-8a9bc858af94",
+			"id": "bfa54d01-ad1e-4edb-8382-a60f289ea3e5",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "bc7551a3-d0aa-4f8a-b7f7-7fa33ec03283",
+			"id": "eee8d4bd-bc40-43e5-9bd5-7da15d8d010b",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "2220d040-6f33-4de4-84d3-177aee36c3e5",
-		"description": "collection parsed at 2023-12-01 18:10:54.751462 -0500 EST m=+0.009377793",
+		"_postman_id": "26c066c4-ccd3-43b5-9fa6-0b8603316b65",
+		"description": "collection parsed at 2023-12-20 03:46:01.987103 -0500 EST m=+0.008827626",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -399,6 +399,22 @@
 					],
 					"path": [
 						"v2/gateway/user/:id/type/:profileType"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v2/gateway/user/canny/:id/type/:profileType",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v2/gateway/user/canny/:id/type/:profileType",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v2/gateway/user/canny/:id/type/:profileType"
 					]
 				},
 				"method": "GET"
@@ -3279,6 +3295,54 @@
 					],
 					"path": [
 						"v1/gateway/financials/transactions/recurring/:transaction_id/note/list"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/copilot/quota/exceeded/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/copilot/quota/exceeded/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/copilot/quota/exceeded/:user_id"
+					]
+				},
+				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/copilot/quota/question/:user_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/copilot/quota/question/:user_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/copilot/quota/question/:user_id"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/async-tasks/task/:task_id",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/async-tasks/task/:task_id",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/async-tasks/task/:task_id"
 					]
 				},
 				"method": "GET"

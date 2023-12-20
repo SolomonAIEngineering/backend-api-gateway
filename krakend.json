@@ -2000,6 +2000,73 @@
       ]
     },
     {
+      "@comment": "This endpoint enables the client to get a canny sso token based on the user id ex. https://production.solomon-ai.dev/api/v2/user/canny/:userId/type/PROFILE_TYPE_UNSPECIFIED",
+      "endpoint": "/v2/gateway/user/canny/{id}/type/{profileType}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/api/v2/user/canny/{id}?profileType={profileType}",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
       "@comment": "This endpoint enables the client to verify an email address. ex - https://production.solomon-ai.dev/api/v2/user/verification/:userId/:profileType",
       "endpoint": "/v2/gateway/user/verification/{userID}/type/{profileType}",
       "method": "POST",
@@ -14179,6 +14246,210 @@
             "http://financial-integration-service.platform.svc.cluster.local:9896"
           ],
           "url_pattern": "/api/v1/transactions/recurring/{transaction_id}/notes",
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to check if a given user has exceeded his or his question quota",
+      "endpoint": "/v1/gateway/financials/copilot/quota/exceeded/{user_id}",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "url_pattern": "/api/v1/copilot/quota/exceeded/{user_id}",
+          "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to record a question asked event",
+      "endpoint": "/v1/gateway/financials/copilot/quota/question/{user_id}",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "url_pattern": "/api/v1/copilot/quota/question/{user_id}",
+          "method": "POST",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to check the status of an async operation",
+      "endpoint": "/v1/gateway/financials/async-tasks/task/{task_id}",
+      "method": "GET",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "url_pattern": "/api/v1/async-task/{task_id}",
           "method": "GET",
           "extra_config": {
             "modifier/martian": {
