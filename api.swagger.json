@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "bfa54d01-ad1e-4edb-8382-a60f289ea3e5",
+			"id": "bbf3110c-89e6-4f33-a4ea-3299a1fd973b",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "eee8d4bd-bc40-43e5-9bd5-7da15d8d010b",
+			"id": "2618aa9d-10df-481b-ba13-b8e3da696794",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "26c066c4-ccd3-43b5-9fa6-0b8603316b65",
-		"description": "collection parsed at 2023-12-20 03:46:01.987103 -0500 EST m=+0.008827626",
+		"_postman_id": "3f4785b9-b7b7-4bbe-b05d-174dd157a77b",
+		"description": "collection parsed at 2023-12-20 23:54:17.327184 -0500 EST m=+0.008094042",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2309,38 +2309,6 @@
 			}
 		},
 		{
-			"name": "/v1/gateway/service/financials/plaid/webhook",
-			"request": {
-				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/plaid/webhook",
-					"protocol": "{{SCHEMA}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"v1/gateway/service/financials/plaid/webhook"
-					]
-				},
-				"method": "POST"
-			}
-		},
-		{
-			"name": "/v1/gateway/service/financials/stripe/webhooks",
-			"request": {
-				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/stripe/webhooks",
-					"protocol": "{{SCHEMA}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"v1/gateway/service/financials/stripe/webhooks"
-					]
-				},
-				"method": "POST"
-			}
-		},
-		{
 			"name": "/v1/gateway/service/financials/subscription",
 			"request": {
 				"url": {
@@ -2917,6 +2885,38 @@
 			}
 		},
 		{
+			"name": "/v1/gateway/service/financials/plaid/webhook",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/plaid/webhook",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/plaid/webhook"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/stripe/webhooks",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/stripe/webhooks",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/stripe/webhooks"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
 			"name": "/v1/gateway/financials/list-transactions",
 			"request": {
 				"url": {
@@ -3346,6 +3346,22 @@
 					]
 				},
 				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/sync/trigger",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/sync/trigger",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/sync/trigger"
+					]
+				},
+				"method": "POST"
 			}
 		},
 		{

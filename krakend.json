@@ -10033,50 +10033,6 @@
       ]
     },
     {
-      "@comment": "Processes a webhook obtained from plaid",
-      "endpoint": "/v1/gateway/service/financials/plaid/webhook",
-      "method": "POST",
-      "extra_config": {},
-      "output_encoding": "no-op",
-      "backend": [
-        {
-          "url_pattern": "/plaid/webhook",
-          "host": [
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-          ],
-          "encoding": "no-op",
-          "method": "POST",
-          "extra_config": {
-            "backend/http": {
-              "return_error_details": "message"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "@comment": "Processes a webhook obtained from stripe",
-      "endpoint": "/v1/gateway/service/financials/stripe/webhooks",
-      "method": "POST",
-      "extra_config": {},
-      "output_encoding": "no-op",
-      "backend": [
-        {
-          "url_pattern": "/stripe/webhook",
-          "encoding": "no-op",
-          "host": [
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-          ],
-          "method": "POST",
-          "extra_config": {
-            "backend/http": {
-              "return_error_details": "message"
-            }
-          }
-        }
-      ]
-    },
-    {
       "@comment": "Creates a new subscription for a given customer against stripe",
       "endpoint": "/v1/gateway/service/financials/subscription",
       "method": "POST",
@@ -12642,6 +12598,50 @@
       ]
     },
     {
+      "@comment": "Processes a webhook obtained from plaid",
+      "endpoint": "/v1/gateway/service/financials/plaid/webhook",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/plaid/webhook",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "encoding": "no-op",
+          "method": "POST",
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Processes a webhook obtained from stripe",
+      "endpoint": "/v1/gateway/service/financials/stripe/webhooks",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/stripe/webhook",
+          "encoding": "no-op",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "POST",
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
       "@comment": "This endpoint enables the client to get a set of transactions in a paginated manner",
       "endpoint": "/v1/gateway/financials/list-transactions",
       "input_query_strings": [
@@ -14451,6 +14451,73 @@
           ],
           "url_pattern": "/api/v1/async-task/{task_id}",
           "method": "GET",
+          "extra_config": {
+            "modifier/martian": {
+              "fifo.Group": {
+                "scope": [
+                  "request",
+                  "response"
+                ],
+                "aggregateErrors": true,
+                "modifiers": [
+                  {
+                    "header.Append": {
+                      "scope": [
+                        "request",
+                        "response"
+                      ],
+                      "name": "X-PLATFORM",
+                      "value": "melodiy"
+                    }
+                  }
+                ]
+              }
+            },
+            "qos/circuit-breaker": {
+              "interval": 30,
+              "timeout": 10,
+              "max_errors": 5,
+              "log_status_change": true,
+              "name": "simfiny-circuit-breaker"
+            },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "This endpoint enables the client to trigger a sync event against a target linked account",
+      "endpoint": "/v1/gateway/financials/sync/trigger",
+      "method": "POST",
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "@comment": "A hundred thousand requests every second",
+          "max_rate": 6000000,
+          "every": "1m"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
+          "cache": true,
+          "disable_jwk_security": true,
+          "operation_debug": true,
+          "propagate_claims": [
+            [
+              "sub",
+              "x-user-authn-id"
+            ]
+          ]
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "url_pattern": "/api/v1/sync/trigger",
+          "method": "POST",
           "extra_config": {
             "modifier/martian": {
               "fifo.Group": {

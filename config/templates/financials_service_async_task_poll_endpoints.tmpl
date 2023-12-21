@@ -22,5 +22,28 @@
             }
         }
     ]
+},
+{
+    "@comment":"This endpoint enables the client to trigger a sync event against a target linked account",
+    "endpoint":"/v1/gateway/financials/sync/trigger",
+    "method":"POST",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }},
+        {{ include "validator_endpoint.tmpl" }}
+    },
+    "backend":[
+        {
+            "host":[
+                {{ include "financial_integration_service_host.tmpl" }}
+            ],
+            "url_pattern":"/api/v1/sync/trigger",
+            "method":"POST",
+            "extra_config":{
+                {{ include "modifier_backend.tmpl" }},
+                {{ include "circuit_breaker_backend.tmpl" }},
+                {{ include "error_detail_backend.tmpl" }}
+            }
+        }
+    ]
 }
 {{end}}

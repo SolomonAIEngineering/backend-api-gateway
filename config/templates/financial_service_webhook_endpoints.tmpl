@@ -1,0 +1,43 @@
+{{define "financial_service_webhook_endpoints"}}
+{{$host := .}}
+{
+    "@comment":"Processes a webhook obtained from plaid",
+    "endpoint":"/v1/gateway/service/financials/plaid/webhook",
+    "method":"POST",
+    "extra_config":{},
+    "output_encoding": "no-op",
+    "backend":[
+    {
+        "url_pattern":"/plaid/webhook",
+        "host":[
+             {{ include "financial_integration_service_host.tmpl" }}
+        ],
+        "encoding": "no-op",
+        "method":"POST",
+        "extra_config":{
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+},
+{
+    "@comment":"Processes a webhook obtained from stripe",
+    "endpoint":"/v1/gateway/service/financials/stripe/webhooks",
+    "method":"POST",
+    "extra_config":{},
+    "output_encoding": "no-op",
+    "backend":[
+    {
+        "url_pattern":"/stripe/webhook",
+        "encoding": "no-op",
+        "host":[
+             {{ include "financial_integration_service_host.tmpl" }}
+        ],
+        "method":"POST",
+        "extra_config":{
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
+}
+{{end}}
