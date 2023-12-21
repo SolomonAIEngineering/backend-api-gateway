@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "32d94e17-a04e-4bf1-ad66-3357b94d1c9f",
+			"id": "e971c196-b67d-4569-b12f-62892fb1fe8e",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "10c8861d-c2a6-4490-bce8-47c8f36b1522",
+			"id": "9def5bb2-3cfb-4e10-80be-78df509dcb8f",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "d05912c3-ee18-44ab-b9c2-c0de4d3a8c92",
-		"description": "collection parsed at 2023-12-20 23:47:41.383885 -0500 EST m=+0.007044668",
+		"_postman_id": "9470c7ff-ee5a-4ea6-926b-bc88af836c54",
+		"description": "collection parsed at 2023-12-20 23:50:16.553004 -0500 EST m=+0.008252751",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -3346,6 +3346,22 @@
 					]
 				},
 				"method": "GET"
+			}
+		},
+		{
+			"name": "/v1/gateway/financials/sync/trigger",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/financials/sync/trigger",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/financials/sync/trigger"
+					]
+				},
+				"method": "POST"
 			}
 		},
 		{
