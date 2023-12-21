@@ -10033,50 +10033,6 @@
       ]
     },
     {
-      "@comment": "Processes a webhook obtained from plaid",
-      "endpoint": "/v1/gateway/service/financials/plaid/webhook",
-      "method": "POST",
-      "extra_config": {},
-      "output_encoding": "no-op",
-      "backend": [
-        {
-          "url_pattern": "/plaid/webhook",
-          "host": [
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-          ],
-          "encoding": "no-op",
-          "method": "POST",
-          "extra_config": {
-            "backend/http": {
-              "return_error_details": "message"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "@comment": "Processes a webhook obtained from stripe",
-      "endpoint": "/v1/gateway/service/financials/stripe/webhooks",
-      "method": "POST",
-      "extra_config": {},
-      "output_encoding": "no-op",
-      "backend": [
-        {
-          "url_pattern": "/stripe/webhook",
-          "encoding": "no-op",
-          "host": [
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-          ],
-          "method": "POST",
-          "extra_config": {
-            "backend/http": {
-              "return_error_details": "message"
-            }
-          }
-        }
-      ]
-    },
-    {
       "@comment": "Creates a new subscription for a given customer against stripe",
       "endpoint": "/v1/gateway/service/financials/subscription",
       "method": "POST",
@@ -12634,6 +12590,50 @@
               "log_status_change": true,
               "name": "simfiny-circuit-breaker"
             },
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Processes a webhook obtained from plaid",
+      "endpoint": "/v1/gateway/service/financials/plaid/webhook",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/plaid/webhook",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "encoding": "no-op",
+          "method": "POST",
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "message"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@comment": "Processes a webhook obtained from stripe",
+      "endpoint": "/v1/gateway/service/financials/stripe/webhooks",
+      "method": "POST",
+      "extra_config": {},
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/stripe/webhook",
+          "encoding": "no-op",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "method": "POST",
+          "extra_config": {
             "backend/http": {
               "return_error_details": "message"
             }
