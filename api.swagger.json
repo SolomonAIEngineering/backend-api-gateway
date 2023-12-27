@@ -1,13 +1,13 @@
 {
 	"variables": [
 		{
-			"id": "d14debbc-3b2d-446e-af4d-e9cb5605e081",
+			"id": "c06a09e8-ae39-49f1-bb1c-dc57cd0f6e59",
 			"key": "HOST",
 			"value": "localhost:8080",
 			"type": "string"
 		},
 		{
-			"id": "2a5f2864-36f5-4301-9fff-cc78bcc6e5b0",
+			"id": "f2ce0241-c58c-4517-9c95-5747bf74671f",
 			"key": "SCHEMA",
 			"value": "http",
 			"type": "string"
@@ -15,8 +15,8 @@
 	],
 	"info": {
 		"name": "Solomon AI Backend API Gateway",
-		"_postman_id": "b0de4a6f-b14a-45f9-97b0-b163be182b95",
-		"description": "collection parsed at 2023-12-26 21:34:48.667361 -0800 PST m=+0.008980668",
+		"_postman_id": "1e2b4340-fa7d-4d32-9319-8717d5284dff",
+		"description": "collection parsed at 2023-12-26 21:44:14.835794 -0800 PST m=+0.006351751",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1717,6 +1717,38 @@
 			}
 		},
 		{
+			"name": "/v1/gateway/service/financials/plaid/webhook",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/plaid/webhook",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/plaid/webhook"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
+			"name": "/v1/gateway/service/financials/stripe/webhooks",
+			"request": {
+				"url": {
+					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/stripe/webhooks",
+					"protocol": "{{SCHEMA}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"v1/gateway/service/financials/stripe/webhooks"
+					]
+				},
+				"method": "POST"
+			}
+		},
+		{
 			"name": "/v1/gateway/financials/initiate-token-update",
 			"request": {
 				"url": {
@@ -2882,38 +2914,6 @@
 					]
 				},
 				"method": "GET"
-			}
-		},
-		{
-			"name": "/v1/gateway/service/financials/plaid/webhook",
-			"request": {
-				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/plaid/webhook",
-					"protocol": "{{SCHEMA}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"v1/gateway/service/financials/plaid/webhook"
-					]
-				},
-				"method": "POST"
-			}
-		},
-		{
-			"name": "/v1/gateway/service/financials/stripe/webhooks",
-			"request": {
-				"url": {
-					"raw": "{{SCHEMA}}://{{HOST}}/v1/gateway/service/financials/stripe/webhooks",
-					"protocol": "{{SCHEMA}}",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"v1/gateway/service/financials/stripe/webhooks"
-					]
-				},
-				"method": "POST"
 			}
 		},
 		{
