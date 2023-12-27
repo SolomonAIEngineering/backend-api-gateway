@@ -50,46 +50,6 @@
     ]
 },
 {
-    "@comment":"Processes a webhook obtained from plaid",
-    "endpoint":"/v1/gateway/service/financials/plaid/webhook",
-    "method":"POST",
-    "extra_config":{},
-    "output_encoding": "no-op",
-    "backend":[
-    {
-        "url_pattern":"/plaid/webhook",
-        "host":[
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-        ],
-        "encoding": "no-op",
-        "method":"POST",
-        "extra_config":{
-            {{ include "error_detail_backend.tmpl" }}
-        }
-    }
-    ]
-},
-{
-    "@comment":"Processes a webhook obtained from stripe",
-    "endpoint":"/v1/gateway/service/financials/stripe/webhooks",
-    "method":"POST",
-    "extra_config":{},
-    "output_encoding": "no-op",
-    "backend":[
-    {
-        "url_pattern":"/stripe/webhook",
-        "encoding": "no-op",
-        "host":[
-            "http://financial-integration-service.platform.svc.cluster.local:9898"
-        ],
-        "method":"POST",
-        "extra_config":{
-            {{ include "error_detail_backend.tmpl" }}
-        }
-    }
-    ]
-},
-{
     "endpoint":"/v1/gateway/financials/initiate-token-update",
     "method":"POST",
     "extra_config":{

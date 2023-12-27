@@ -1,7 +1,7 @@
 {{define "financial_service_webhook_endpoints"}}
 {{$host := .}}
 {
-    "@comment":"Processes a webhook obtained from plaid. NOTE: This endpoint is not used by the service outside of processing webhooks",
+    "@comment":"Processes a webhook obtained from plaid.NOTE: This endpoint is not used by the service outside of processing webhooks",
     "endpoint":"/v1/gateway/service/financials/plaid/webhook",
     "method":"POST",
     "extra_config":{},
