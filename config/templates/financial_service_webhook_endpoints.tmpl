@@ -1,7 +1,7 @@
 {{define "financial_service_webhook_endpoints"}}
 {{$host := .}}
 {
-    "@comment":"Processes a webhook obtained from plaid",
+    "@comment":"Processes a webhook obtained from plaid. NOTE: This endpoint is not used by the service outside of processing webhooks",
     "endpoint":"/v1/gateway/service/financials/plaid/webhook",
     "method":"POST",
     "extra_config":{},
@@ -10,7 +10,7 @@
     {
         "url_pattern":"/plaid/webhook",
         "host":[
-             {{ include "financial_integration_service_host.tmpl" }}
+             {{ include "financial_integration_service_host_rest.tmpl" }}
         ],
         "encoding": "no-op",
         "method":"POST",
@@ -21,7 +21,7 @@
     ]
 },
 {
-    "@comment":"Processes a webhook obtained from stripe",
+    "@comment":"Processes a webhook obtained from stripe. NOTE: This endpoint is not used by the service outside of processing webhooks",
     "endpoint":"/v1/gateway/service/financials/stripe/webhooks",
     "method":"POST",
     "extra_config":{},
@@ -31,7 +31,7 @@
         "url_pattern":"/stripe/webhook",
         "encoding": "no-op",
         "host":[
-             {{ include "financial_integration_service_host.tmpl" }}
+             {{ include "financial_integration_service_host_rest.tmpl" }}
         ],
         "method":"POST",
         "extra_config":{
