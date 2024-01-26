@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+environment: staging
+
 image:
   repository: feelguuds/api-gateway
   pullPolicy: Always

@@ -120,8 +120,15 @@ update-kustomize:
 	./scripts/sync-kustomize.sh
 
 gen: 
-	FC_ENABLE=1 FC_SETTINGS="config/settings" FC_PARTIALS="config/partials" FC_TEMPLATES="config/templates" FC_OUT=$(OUTPUT_FILE_NAME) krakend check -t -ddd -c "config/krakend.tmpl"
-	make update-kustomize
+	FC_ENABLE=1 \
+	FC_SETTINGS="config/settings" \
+	FC_PARTIALS="config/partials/prod" \
+	FC_TEMPLATES="config/templates" \
+	FC_OUT=$(OUTPUT_FILE_NAME) \
+	AUTH_DOMAIN=solomon-ai.us.auth0.com \
+	NUM_PODS=1 \
+	AUTH_AUDIENCE=https://solomon-ai.us.auth0.com/api/v2/ \
+	krakend check -t -ddd -c "config/krakend.tmpl"
 
 lint-output:
 	krakend check -tlc $(OUTPUT_FILE_NAME)

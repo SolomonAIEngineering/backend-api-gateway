@@ -4,6 +4,8 @@
 
 replicaCount: 2
 
+environment: prod
+
 image:
   repository: feelguuds/api-gateway
   pullPolicy: Always

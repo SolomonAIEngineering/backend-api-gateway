@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       annotations:
-        timestamp: "20240125215004"
+        timestamp: "20240126010634"
         prometheus.io/path: "__stats"
         prometheus.io/port: "8081"
         prometheus.io/scrape: "true"
@@ -50,6 +50,12 @@ spec:
           env:
           - name: KRAKEND_PORT
             value: "8080"
+          - name: AUTH_DOMAIN
+            value: solomon-ai.us.auth0.com
+          - name: AUTH_AUDIENCE
+            value: https://solomon-ai.us.auth0.com/api/v2/
+          - name: ENV
+            value: prod
           ports:
             - name: http
               containerPort: 8080
