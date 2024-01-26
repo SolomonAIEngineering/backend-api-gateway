@@ -113,3 +113,7 @@ linkerd:
 
 tests:
   enabled: false
+
+auth0:
+  domain: solomon-ai.us.auth0.com
+  audience: https://solomon-ai.us.auth0.com/api/v2/

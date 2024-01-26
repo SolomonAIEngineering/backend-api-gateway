@@ -31,6 +31,10 @@
         "https"
       ]
     },
+    "auth/validator": {
+      "@comment": "Enable a JWK shared cache amongst all endpoints of 15 minutes",
+      "shared_cache_duration": 900
+    },
     "router": {
       "return_error_msg": true,
       "forwarded_by_client_ip": true,
@@ -163,17 +167,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1169,17 +1171,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1236,17 +1236,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1303,17 +1301,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1489,17 +1485,15 @@
           "sequential": true
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1876,17 +1870,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -1943,17 +1935,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2010,17 +2000,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2401,17 +2389,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2589,17 +2575,15 @@
           "sequential": true
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2755,17 +2739,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2822,17 +2804,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2889,17 +2869,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -2956,17 +2934,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3023,17 +2999,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3090,17 +3064,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "input_query_strings": [
@@ -3161,17 +3133,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3228,17 +3198,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3295,17 +3263,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3362,17 +3328,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3429,17 +3393,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3496,17 +3458,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3563,17 +3523,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3630,17 +3588,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3697,17 +3653,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3764,17 +3718,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3831,17 +3783,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3898,17 +3848,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -3965,17 +3913,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4032,17 +3978,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4099,17 +4043,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4166,17 +4108,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4233,17 +4173,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4300,17 +4238,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4367,17 +4303,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4434,17 +4368,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "input_query_strings": [
@@ -4504,17 +4436,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4571,17 +4501,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "input_query_strings": [
@@ -4641,17 +4569,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4708,17 +4634,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4775,17 +4699,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4842,17 +4764,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4909,17 +4829,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -4976,17 +4894,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5043,17 +4959,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5110,17 +5024,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5177,17 +5089,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5244,17 +5154,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5311,17 +5219,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5378,17 +5284,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5445,17 +5349,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5512,17 +5414,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5579,17 +5479,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5646,17 +5544,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5713,17 +5609,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5780,17 +5674,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5847,17 +5739,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5914,17 +5804,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -5981,17 +5869,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6048,17 +5934,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6115,17 +5999,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6182,17 +6064,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6249,17 +6129,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6316,17 +6194,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6383,17 +6259,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6450,17 +6324,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6517,17 +6389,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6584,17 +6454,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6651,17 +6519,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6718,17 +6584,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6785,17 +6649,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6852,17 +6714,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6919,17 +6779,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -6986,17 +6844,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7053,17 +6909,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7120,17 +6974,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7187,17 +7039,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7254,17 +7104,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7321,17 +7169,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7388,17 +7234,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7671,17 +7515,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7741,17 +7583,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7811,17 +7651,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7881,17 +7719,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -7951,17 +7787,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8018,17 +7852,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8085,17 +7917,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8152,17 +7982,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8219,17 +8047,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8286,17 +8112,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8353,17 +8177,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8420,17 +8242,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8487,17 +8307,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8554,17 +8372,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8621,17 +8437,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8688,17 +8502,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8755,17 +8567,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8822,17 +8632,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8889,17 +8697,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -8956,17 +8762,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9023,17 +8827,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9090,17 +8892,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9157,17 +8957,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9224,17 +9022,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9291,17 +9087,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9358,17 +9152,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9425,17 +9217,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9492,17 +9282,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9559,17 +9347,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9626,17 +9412,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9696,17 +9480,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9766,17 +9548,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9836,17 +9616,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9906,17 +9684,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -9976,17 +9752,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10043,17 +9817,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10120,17 +9892,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10190,17 +9960,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10257,17 +10025,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10331,17 +10097,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10405,17 +10169,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10479,17 +10241,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10552,17 +10312,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10626,17 +10384,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10699,17 +10455,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10772,17 +10526,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10846,17 +10598,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10920,17 +10670,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -10993,17 +10741,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11066,17 +10812,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11139,17 +10883,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11212,17 +10954,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11286,17 +11026,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11359,17 +11097,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11433,17 +11169,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11506,17 +11240,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11576,17 +11308,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11646,17 +11376,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11716,17 +11444,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11783,17 +11509,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11850,17 +11574,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11917,17 +11639,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -11991,17 +11711,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12063,17 +11781,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12135,17 +11851,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12202,17 +11916,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12269,17 +11981,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12336,17 +12046,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12403,17 +12111,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12470,17 +12176,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12541,17 +12245,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12660,17 +12362,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12733,17 +12433,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12800,17 +12498,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12867,17 +12563,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -12934,17 +12628,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13001,17 +12693,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13068,17 +12758,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13135,17 +12823,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13202,17 +12888,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13269,17 +12953,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13336,17 +13018,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13403,17 +13083,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13470,17 +13148,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13537,17 +13213,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13604,17 +13278,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "input_query_strings": [
@@ -13691,17 +13363,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13758,17 +13428,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13825,17 +13493,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13892,17 +13558,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -13959,17 +13623,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14026,17 +13688,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14093,17 +13753,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14160,17 +13818,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14227,17 +13883,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14297,17 +13951,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14364,17 +14016,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14431,17 +14081,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14498,17 +14146,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14565,17 +14211,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14632,17 +14276,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14699,17 +14341,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14766,17 +14406,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14833,17 +14471,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14900,17 +14536,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -14967,17 +14601,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [
@@ -15034,17 +14666,15 @@
           "every": "1m"
         },
         "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "http://authentication-service.platform.svc.cluster.local:8000/jwks",
-          "cache": true,
           "disable_jwk_security": true,
           "operation_debug": true,
-          "propagate_claims": [
-            [
-              "sub",
-              "x-user-authn-id"
-            ]
-          ]
+          "cache": true,
+          "cache_duration": 3600,
+          "alg": "RS256",
+          "audience": [
+            "https://solomon-ai.us.auth0.com/api/v2/"
+          ],
+          "jwk_url": "https://solomon-ai.us.auth0.com/.well-known/jwks.json"
         }
       },
       "backend": [

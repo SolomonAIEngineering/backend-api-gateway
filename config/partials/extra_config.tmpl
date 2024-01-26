@@ -16,6 +16,10 @@
         "https"
     ]
    },
+    "auth/validator": {
+      "@comment": "Enable a JWK shared cache amongst all endpoints of 15 minutes",
+      "shared_cache_duration": 900
+   },
    "router":{
       "return_error_msg":true,
       "forwarded_by_client_ip":true,
