@@ -1,0 +1,17 @@
+"modifier/martian": {
+    "fifo.Group": {
+    "scope": ["request", "response"],
+    "aggregateErrors": true,
+    "modifiers": [
+        {
+        "header.Append": {
+            "scope": [
+              "request", "response"
+            ],
+            "name": "X-PLATFORM",
+            "value": "melodiy"
+          }
+        }
+    ]
+    }
+}

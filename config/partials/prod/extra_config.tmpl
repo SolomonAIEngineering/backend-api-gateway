@@ -1,0 +1,81 @@
+{
+   "documentation/openapi": {
+    "description": "This is the api gateway for the solomon ai backend",
+    "version": "1.0.0",
+    "host": "http://solomon-ai.io",
+    "base_path": "/v1",
+    "terms_of_service": "http://url.to/tos",
+    "contact_name": "yoan yomba",
+    "contact_email": "yoanyomba@solomon-ai.co",
+    "contact_url": "http://solomon-ai.io/contact",
+    "license_name": "MIT",
+    "license_url": "https://opensource.org/licenses/MIT",
+    "tags": ["platform", "fin-tech", "Restricted"],
+    "schemes": [
+        "http",
+        "https"
+    ]
+   },
+    "auth/validator": {
+      "@comment": "Enable a JWK shared cache amongst all endpoints of 15 minutes",
+      "shared_cache_duration": 900
+   },
+   "router":{
+      "return_error_msg":true,
+      "forwarded_by_client_ip":true,
+      "disable_access_log":true
+   },
+   "telemetry/logging":{
+      "level":"ERROR",
+      "prefix":"[SOLOMON-AI API-GATEWAY]",
+      "syslog":false,
+      "stdout":true
+   },
+   "telemetry/metrics":{
+      "collection_time":"120s",
+      "proxy_disabled":false,
+      "router_disabled":false,
+      "backend_disabled":false,
+      "endpoint_disabled":false,
+      "listen_address":":8081"
+   },
+   "security/cors":{
+      "allow_origins":[
+         "*"
+      ],
+      "allow_methods":[
+         "GET",
+         "HEAD",
+         "POST",
+         "PUT",
+         "PATCH",
+         "DELETE",
+         "OPTIONS"
+      ],
+      "allow_headers":[
+         "*"
+      ],
+    "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age":"12h"
+   },
+   "telemetry/opencensus": {
+        "sample_rate": 10,
+        "reporting_period": 60,
+        "enabled_layers": {
+          "backend": true,
+          "router": true
+        },
+        "exporters": {
+          "prometheus": {
+              "port": 9091,
+              "namespace": "krakend",
+              "tag_host": false,
+              "tag_path": true,
+              "tag_method": true,
+              "tag_statuscode": false
+          }
+      }
+    }
+}
