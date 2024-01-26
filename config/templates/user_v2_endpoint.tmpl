@@ -345,5 +345,27 @@
             }
         }
     ]
+},
+{
+    "@comment":"This endpoint enables the client to get an account (business or user) by authZeroId and profileType ex - https://production.solomon-ai.dev/api/v2/gateway/user/auth-zero/:auth0UserId?profileType=PROFILE_TYPE_USER",
+    "endpoint":"/v2/gateway/user/auth-zero/{authZeroUserId}/type/{profileType}",
+    "method":"GET",
+    "extra_config":{
+        {{ include "rate_limit_endpoint.tmpl" }}
+    },
+    "backend":[
+    {
+        "url_pattern":"/api/v2/user/auth-zero/{authZeroUserId}?profileType={profileType}",
+        "host":[
+            {{ include "user_service_host.tmpl" }}
+        ],
+        "method":"GET",
+        "extra_config":{
+            {{ include "modifier_backend.tmpl" }},
+            {{ include "circuit_breaker_backend.tmpl" }},
+            {{ include "error_detail_backend.tmpl" }}
+        }
+    }
+    ]
 }
 {{end}}
