@@ -17,7 +17,7 @@ RUN FC_ENABLE=1 \
     FC_TEMPLATES="/etc/krakend/templates" \
     AUTH_DOMAIN="$AUTH_DOMAIN" \
     AUTH_AUDIENCE="$AUTH_AUDIENCE" \
-    envsubst < krakend.tmpl > /tmp/krakend.json \
+    envsubst < krakend.tmpl > /tmp/krakend.json && \
     krakend check -d -t -c /tmp/krakend.json --lint
 
 # The linting needs the final krakend.json file
