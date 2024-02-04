@@ -1,18 +1,21 @@
 version: "3"
+
 services:
-  kraken_designer:
-    image: devopsfaith/krakendesigner:latest
-    ports:
-      - 8787:80
-    networks:
-      - backend-network
-  api-gateway:
-    image: devopsfaith/krakend:1.4.1
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENV: staging
+      AUTH_DOMAIN: dev-26i1fsf2m1n6hqk1.us.auth0.com
+      AUTH_AUDIENCE: https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/
+    container_name: gateway
     volumes:
-      - .:/etc/krakend
+      - ./config:/config
+    working_dir: /config
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "8180:8080"
+      - "8181:8081"
     networks:
       - backend-network
 

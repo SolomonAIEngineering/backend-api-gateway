@@ -1,8 +1,15 @@
-OUTPUT_FILE_NAME=config/krakend-flexible-config.compiled.json
+OUTPUT_FILE_NAME_PROD=config/krakend-flexible-config.compiled.prod.json
+OUTPUT_FILE_NAME_STAGING=config/krakend-flexible-config.compiled.staging.json
 PATCH_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%s.%d", $$2, $$3, $$4+1 }')
 MINOR_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%d.0", $$2, $$3+1 }')
 MAJOR_VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%d.0.0", $$2+1 }')
 VERSION?=$(shell grep 'VERSION' pkg/version/version.go | awk -F'[".]' '{ printf "%s.%s.%s", $$2, $$3, $$4 }')
+AUTH_DOMAIN_PROD=solomon-ai.us.auth0.com
+AUTH_AUDIENCE_PROD=https://solomon-ai.us.auth0.com/api/v2/
+AUTH_DOMAIN_STAGING=dev-26i1fsf2m1n6hqk1.us.auth0.com
+AUTH_AUDIENCE_STAGING=https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/
+PROD_ENV=prod
+STAGING_ENV=staging
 
 tell:
 	@echo Next Major Version: $(MAJOR_VERSION)
@@ -95,6 +102,10 @@ compose-up-d:
 compose-down:
 	docker-compose down
 
+clean: ## Clean all Docker Containers and Volumes
+	docker-compose down --rmi local --remove-orphans -v
+	docker-compose rm -f -v
+
 update-chart:
 	cp krakend.json ./charts/api-gateway
 
@@ -110,6 +121,12 @@ deploy-minikube:
 	helm upgrade --install api-gateway ./charts/api-gateway
 	minikube dashboard
 
+build:
+	docker build -t feelguuds/gateway:latest .
+
+run: build
+	docker run -p 8081:80 feelguuds/gateway:latest
+
 deploy:
 	./deploy/deploy.sh
 
@@ -119,33 +136,66 @@ lint-gateway-configs:
 update-kustomize:
 	./scripts/sync-kustomize.sh
 
-gen: 
-	FC_ENABLE=1 FC_SETTINGS="config/settings" FC_PARTIALS="config/partials" FC_TEMPLATES="config/templates" FC_OUT=$(OUTPUT_FILE_NAME) krakend check -t -ddd -c "config/krakend.tmpl"
-	make update-kustomize
-
-lint-output:
-	krakend check -tlc $(OUTPUT_FILE_NAME)
-
-prettiefy:
-	cat $(OUTPUT_FILE_NAME) | jq >> krakend.compiled.json
-	mv krakend.compiled.json krakend.json
-	rm $(OUTPUT_FILE_NAME)
-
-swagger:
-	rm api.swagger.json
-	cd ./postman-generator && go build ./cmd/krakend-postman/main.go &&  ./main -c ../krakend.json >> ../api.swagger.json
-
-build-docs:
-	cd docs && yarn generate
-
-
 validate-manifests:
 	./scripts/validate.sh
 
+gen-prod: 
+	FC_ENABLE=1 \
+	FC_SETTINGS="config/settings" \
+	FC_PARTIALS="config/partials/$(PROD_ENV)" \
+	FC_TEMPLATES="config/templates" \
+	FC_OUT=$(OUTPUT_FILE_NAME_PROD) \
+	AUTH_DOMAIN=solomon-ai.us.auth0.com \
+	NUM_PODS=1 \
+	AUTH_AUDIENCE=https://solomon-ai.us.auth0.com/api/v2/ \
+	krakend check -t -ddd -c "config/krakend.tmpl"
 
-autogen: gen lint-output prettiefy swagger build-docs 
+gen-staging: 
+	FC_ENABLE=1 \
+	FC_SETTINGS="config/settings" \
+	FC_PARTIALS="config/partials/$(STAGING_ENV)" \
+	FC_TEMPLATES="config/templates" \
+	FC_OUT=$(OUTPUT_FILE_NAME_STAGING) \
+	AUTH_DOMAIN=solomon-ai.us.auth0.com \
+	NUM_PODS=1 \
+	AUTH_AUDIENCE=https://solomon-ai.us.auth0.com/api/v2/ \
+	krakend check -t -ddd -c "config/krakend.tmpl"
 
-precommit:  gen lint-output prettiefy swagger update-kustomize validate-manifests lint
+lint-output-prod:
+	krakend check -tlc $(OUTPUT_FILE_NAME_PROD)
+
+lint-output-staging:
+	krakend check -tlc $(OUTPUT_FILE_NAME_STAGING)
+
+prettiefy-prod:
+	cat $(OUTPUT_FILE_NAME_PROD) | jq >> krakend.compiled.json
+	mv krakend.compiled.json krakend.$(PROD_ENV).json
+	rm $(OUTPUT_FILE_NAME_PROD)
+
+prettiefy-staging:
+	cat $(OUTPUT_FILE_NAME_STAGING) | jq >> krakend.compiled.json
+	mv krakend.compiled.json krakend.$(STAGING_ENV).json
+	rm $(OUTPUT_FILE_NAME_STAGING)
+
+audit-staging:
+	krakend audit -c krakend.$(STAGING_ENV).json 
+
+audit-prod:
+	krakend audit -c krakend.$(PROD_ENV).json 
+
+autogen-prod: gen-prod lint-output-prod prettiefy-prod
+autogen-staging: gen-staging lint-output-staging prettiefy-staging
+swagger:
+	rm api.swagger.$(PROD_ENV).json api.swagger.$(STAGING_ENV).json || true
+	cd ./postman-generator && \
+		go build ./cmd/krakend-postman/main.go && \
+		 ./main -c ../krakend.$(PROD_ENV).json >> ../api.swagger.$(PROD_ENV).json && \
+		 	./main -c ../krakend.$(STAGING_ENV).json >> ../api.swagger.$(STAGING_ENV).json
+
+build-docs:
+	cd docs && yarn install && yarn generate
+
+precommit: autogen-prod autogen-staging swagger build-docs  update-kustomize validate-manifests audit-staging audit-prod
 
 sync-kustomize:
 	./scripts/sync-kustomize.sh

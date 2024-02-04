@@ -4,6 +4,8 @@
 
 replicaCount: 1
 
+environment: staging
+
 image:
   repository: feelguuds/api-gateway
   pullPolicy: Always
@@ -75,7 +77,6 @@ resources:
     cpu: "100m"
     memory: "512Mi"
 
-
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -113,3 +114,7 @@ linkerd:
 
 tests:
   enabled: false
+
+auth0:
+  domain: dev-26i1fsf2m1n6hqk1.us.auth0.com
+  audience: https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/
