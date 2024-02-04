@@ -1,27 +1,21 @@
 version: "3"
+
 services:
-  # kraken_designer:
-  #   image: devopsfaith/krakendesigner:latest
-  #   ports:
-  #     - 8787:80
-  #   networks:
-  #     - backend-network
-  api-gateway:
-    image: devopsfaith/krakend:watch
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      - FC_ENABLE=1
-      - FC_OUT=/etc/krakend/krakend.json
-      - FC_PARTIALS=/etc/krakend/config/partials
-      - FC_SETTINGS=/etc/krakend/config/settings
-      - FC_TEMPLATES=/etc/krakend/config/templates
-      - AUTH_DOMAIN=solomon-ai.us.auth0.com
-      - AUTH_AUDIENCE=https://solomon-ai.us.auth0.com/api/v2/
-    command: ["run","-dc","./config/krakend.tmpl"]
+      ENV: staging
+      AUTH_DOMAIN: dev-26i1fsf2m1n6hqk1.us.auth0.com
+      AUTH_AUDIENCE: https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/
+    container_name: gateway
     volumes:
-      - .:/etc/krakend
+      - ./config:/config
+    working_dir: /config
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "8180:8080"
+      - "8181:8081"
     networks:
       - backend-network
 
