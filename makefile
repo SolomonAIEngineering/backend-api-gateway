@@ -95,6 +95,10 @@ compose-up-d:
 compose-down:
 	docker-compose down
 
+clean: ## Clean all Docker Containers and Volumes
+	docker-compose down --rmi local --remove-orphans -v
+	docker-compose rm -f -v
+
 update-chart:
 	cp krakend.json ./charts/api-gateway
 
@@ -109,6 +113,12 @@ deploy-minikube:
 	docker build -t feelguuds/gateway:latest .
 	helm upgrade --install api-gateway ./charts/api-gateway
 	minikube dashboard
+
+build:
+	docker build -t feelguuds/gateway:latest .
+
+run: build
+	docker run -p 8081:80 feelguuds/gateway:latest
 
 deploy:
 	./deploy/deploy.sh
