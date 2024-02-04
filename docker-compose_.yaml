@@ -1,0 +1,30 @@
+version: "3"
+services:
+  # kraken_designer:
+  #   image: devopsfaith/krakendesigner:latest
+  #   ports:
+  #     - 8787:80
+  #   networks:
+  #     - backend-network
+  api-gateway:
+    image: devopsfaith/krakend:watch
+    environment:
+      - FC_ENABLE=1
+      - FC_OUT=/etc/krakend/krakend.json
+      - FC_PARTIALS=/etc/krakend/config/partials
+      - FC_SETTINGS=/etc/krakend/config/settings
+      - FC_TEMPLATES=/etc/krakend/config/templates
+      - AUTH_DOMAIN=solomon-ai.us.auth0.com
+      - AUTH_AUDIENCE=https://solomon-ai.us.auth0.com/api/v2/
+    command: ["run","-dc","./config/krakend.tmpl"]
+    volumes:
+      - .:/etc/krakend
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - backend-network
+
+networks:
+  backend-network:
+    name: custom_network

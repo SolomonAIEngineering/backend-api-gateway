@@ -77,7 +77,6 @@ resources:
     cpu: "100m"
     memory: "512Mi"
 
-
 autoscaling:
   enabled: false
   minReplicas: 1

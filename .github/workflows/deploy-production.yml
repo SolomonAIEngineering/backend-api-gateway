@@ -77,8 +77,8 @@ jobs:
         id: validation
         uses: elifesciences/helm-validator-action@master
         with:
-          chartPath: 'charts/api-gateway'
-          kubernetesVersion: '1.28.0'
+          chartPath: "charts/api-gateway"
+          kubernetesVersion: "1.28.0"
       - name: Generate images meta
         id: meta
         uses: docker/metadata-action@v4
@@ -96,7 +96,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: ./Dockerfile
+          file: ./Dockerfile.prod
           platforms: ${{matrix.operating-system}}
           build-args: |
             REVISION=${{ steps.prep.outputs.REVISION }}
@@ -106,7 +106,7 @@ jobs:
         if: failure()
         run: |
           kubectl logs -l app=api-gateway || true
-    
+
   deploy:
     needs: [publish-artifacts]
     runs-on: ubuntu-latest

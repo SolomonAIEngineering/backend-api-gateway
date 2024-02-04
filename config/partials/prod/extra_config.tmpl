@@ -16,6 +16,16 @@
         "https"
     ]
    },
+   "security/bot-detector": {
+      "allow": ["MyAndroidClient/1.0", "Pingdom.com_bot_version_1.1"],
+      "deny": [],
+      "patterns": [
+            "(GoogleBot)/.*",
+            "(facebookexternalhit)/.*"
+      ],
+      "cache_size": 10000,
+      "empty_user_agent_is_bot": true
+   },
     "auth/validator": {
       "@comment": "Enable a JWK shared cache amongst all endpoints of 15 minutes",
       "shared_cache_duration": 900
@@ -23,7 +33,8 @@
    "router":{
       "return_error_msg":true,
       "forwarded_by_client_ip":true,
-      "disable_access_log":true
+      "disable_access_log":true,
+      "hide_version_header": true
    },
    "telemetry/logging":{
       "level":"ERROR",
@@ -38,6 +49,29 @@
       "backend_disabled":false,
       "endpoint_disabled":false,
       "listen_address":":8081"
+   },
+   "security/http": {
+      "allowed_hosts": [
+         "app-platform.solomon-ai.io"
+      ],
+      "ssl_proxy_headers": {
+         "X-Forwarded-Proto": "https"
+      },
+      "host_proxy_headers":[
+         "X-Forwarded-Hosts"
+      ],
+      "ssl_redirect": true,
+      "ssl_host": "ssl.host.domain",
+      "sts_seconds": 300,
+      "sts_include_subdomains": true,
+      "frame_deny": true,
+      "referrer_policy": "same-origin",
+      "custom_frame_options_value": "",
+      "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+      "content_type_nosniff": true,
+      "browser_xss_filter": true,
+      "content_security_policy": "default-src 'self';",
+      "is_development": false
    },
    "security/cors":{
       "allow_origins":[
