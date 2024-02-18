@@ -1,6 +1,6 @@
 name: release artifacts to production environment
 
-# release artifacts
+# release artifacts to production
 on:
   push:
     branches: main
