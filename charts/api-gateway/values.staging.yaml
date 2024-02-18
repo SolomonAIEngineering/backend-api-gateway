@@ -7,7 +7,7 @@ replicaCount: 1
 environment: staging
 
 image:
-  repository: feelguuds/api-gateway
+  repository: 924307307217.dkr.ecr.us-east-1.amazonaws.com/api-gateway
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: staging
@@ -44,7 +44,7 @@ securityContext:
   #runAsUser: 1000
 
 service:
-  type: NodePort
+  type: LoadBalancer
   port: 8080
   nodeport: 32093
   metrics:

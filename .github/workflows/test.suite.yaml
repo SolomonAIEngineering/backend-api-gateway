@@ -1,0 +1,94 @@
+name: Execute Test Suite
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+permissions:
+  contents: write # needed to write releases
+  id-token: write # needed for keyless signing
+  packages: write # needed for ghcr access
+
+env:
+  HELM_CHART_PATH: charts/api-gateway
+  DOCKER_IMAGE: docker.io/solomonai/api-gateway
+  GHCR_REGISTRY: ghcr.io/SolomonAiEngineering
+  K8S_VERSION: "1.29.0"
+  HELM_VERSION: "3.8.1"
+  GO_VERSION: "1.21.x"
+  REPOSITORY: "backend-api-gateway"
+  OWNER: "SolomonAiEngineering"
+  CHARTS_DIRECTORY: "charts"
+  CHARTS_URL: "https://charts.melodiy.io"
+  HELM_PUBLISH_BRANCH: "gh-pages"
+  SERVICE_NAME: "api-gateway"
+
+jobs:
+  validate-helm-charts:
+    name: helm-chart-validation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Restore Go cache
+        uses: actions/cache@v3
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.20.x
+      - name: Setup CUE
+        uses: cue-lang/setup-cue@main
+      - name: Setup Helm
+        uses: ./.github/actions/helm
+        with:
+          version: 3.8.1
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+      - name: Validate Api Gateway Helm Chart
+        uses: stefanprodan/kube-tools@v1
+        with:
+          kubectl: 1.19.11
+          helm: 2.17.0
+          helmv3: 3.6.0
+          command: |
+            helmv3 template ./charts/api-gateway --set linkerd.profile.enabled=false | kubeval --strict --kubernetes-version 1.19.11 --schema-location https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master
+      - name: Debug failure
+        if: failure()
+        run: |
+          kubectl logs -l app=${{env.SERVICE_NAME}} || true
+  trivy:
+    name: credentials-scanning
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build image
+        id: build
+        run: |
+          IMAGE=test/api-gateway:latest
+          docker build -t ${IMAGE} .
+          echo "::set-output name=image::$IMAGE"
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        continue-on-error: true
+        with:
+          image-ref: ${{ steps.build.outputs.image }}
+          format: table
+          exit-code: "1"
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL,HIGH

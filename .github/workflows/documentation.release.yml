@@ -1,7 +1,9 @@
-name: docs
+name: generate documentation
 
 # define the trigger
-on: [push, pull_request]
+on:
+  push:
+    branches: main
 
 jobs:
   docs:
