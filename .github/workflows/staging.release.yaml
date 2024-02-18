@@ -126,7 +126,7 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: ${{ secrets.AWS_REGION }}
-          image: ${{ env.ECR_REPOSITORY }}:${{ steps.commit.outputs.short }}
+          image: ${{ env.ECR_REPOSITORY }}:staging_${{ steps.commit.outputs.short }}
       - name: Debug Failure
         if: failure()
         run: kubectl logs -l app=api-gateway || true
