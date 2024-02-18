@@ -115,7 +115,7 @@ jobs:
           images: ${{ env.DOCKER_IMAGE }}
           tags: type=raw,value=${{ steps.prep.outputs.VERSION }}
       - name: Build and Push Docker Image
-        run: docker build --tag ${{ env.ECR_REPOSITORY }}:staging_${{ steps.commit.outputs.short }} --tag ${{ env.ECR_REPOSITORY }}:staging ./Dockerfile.staging
+        run: docker build --tag ${{ env.ECR_REPOSITORY }}:staging_${{ steps.commit.outputs.short }} --tag ${{ env.ECR_REPOSITORY }}:staging -f ./Dockerfile.staging .
       - name: Push to ECR
         id: ecr
         uses: jwalton/gh-ecr-push@v1
