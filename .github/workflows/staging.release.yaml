@@ -3,7 +3,7 @@ name: release artifacts to staging environment
 # release artifacts
 on:
   push:
-    branches: main
+    branches: staging
 
 permissions:
   contents: write
